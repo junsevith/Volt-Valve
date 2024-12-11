@@ -4,9 +4,7 @@ import example.voltvalvemod.block.ModBlocks
 import example.voltvalvemod.item.ModCreativeModeTabs
 import example.voltvalvemod.item.ModItems
 import net.minecraft.client.Minecraft
-import net.minecraft.world.item.CreativeModeTab
 import net.minecraftforge.common.MinecraftForge
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
