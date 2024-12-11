@@ -1,7 +1,12 @@
-package example.examplemod
+package example.voltvalvemod
 
-import example.examplemod.block.ModBlocks
+import example.voltvalvemod.block.ModBlocks
+import example.voltvalvemod.item.ModCreativeModeTabs
+import example.voltvalvemod.item.ModItems
 import net.minecraft.client.Minecraft
+import net.minecraft.world.item.CreativeModeTab
+import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
@@ -18,9 +23,9 @@ import thedarkcolour.kotlinforforge.forge.runForDist
  *
  * An example for blocks is in the `blocks` package of this mod.
  */
-@Mod(ExampleMod.ID)
-object ExampleMod {
-    const val ID = "examplemod"
+@Mod(VoltValveMod.ID)
+object VoltValveMod {
+    const val ID = "voltvalvemod"
 
     // the logger for our mod
     val LOGGER: Logger = LogManager.getLogger(ID)
@@ -30,6 +35,8 @@ object ExampleMod {
 
         // Register the KDeferredRegister to the mod-specific event bus
         ModBlocks.REGISTRY.register(MOD_BUS)
+        ModItems.REGISTRY.register(MOD_BUS)
+        ModCreativeModeTabs.REGISTRY.register(MOD_BUS)
 
         val obj = runForDist(
             clientTarget = {
@@ -42,6 +49,8 @@ object ExampleMod {
             })
 
         println(obj)
+
+        MinecraftForge.EVENT_BUS.register(this)
     }
 
     /**
