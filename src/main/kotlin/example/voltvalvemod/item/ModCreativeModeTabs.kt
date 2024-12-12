@@ -16,6 +16,7 @@ object ModCreativeModeTabs {
             .displayItems { itemDisplayParameters, output ->
                 output.accept(ModBlocks.EXAMPLE_BLOCK.get())
                 output.accept(ModBlocks.SOLAR_PANEL.get())
+                output.accept(ModBlocks.SOCKET.get())
             }
             .build()
     }

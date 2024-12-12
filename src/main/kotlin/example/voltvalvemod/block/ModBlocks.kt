@@ -1,6 +1,7 @@
 package example.voltvalvemod.block
 
 import example.voltvalvemod.VoltValveMod
+import example.voltvalvemod.block.custom.SocketBlock
 import example.voltvalvemod.block.custom.SolarPanelBlock
 import example.voltvalvemod.item.ModItems
 import net.minecraft.world.item.BlockItem
@@ -23,6 +24,9 @@ object ModBlocks {
     }
     val SOLAR_PANEL = registerBlock("solar_panel") {
         SolarPanelBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion())
+    }
+    val SOCKET = registerBlock("socket") {
+        SocketBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA).noOcclusion())
     }
 
     private fun <T : Block> registerBlock(name: String, block: Supplier<T>): RegistryObject<T> {

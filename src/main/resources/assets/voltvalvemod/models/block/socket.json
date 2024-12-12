@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "voltvalvemod:block/socket_front",
+    "side": "voltvalvemod:block/socket_side",
+    "top": "voltvalvemod:block/socket_side"
+  }
+}

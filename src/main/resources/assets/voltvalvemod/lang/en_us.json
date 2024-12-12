@@ -1,4 +1,5 @@
 {
   "block.voltvalvemod.example_block": "Example Block",
-  "block.voltvalvemod.solar_panel": "Solar Panel"
+  "block.voltvalvemod.solar_panel": "Solar Panel",
+  "block.voltvalvemod.socket": "Socket"
 }
