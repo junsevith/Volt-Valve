@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_daylight_detector",
+  "textures": {
+    "side": "minecraft:block/iron_block",
+    "top": "voltvalvemod:block/solar_panel"
+  }
+}

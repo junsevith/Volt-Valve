@@ -1,10 +1,12 @@
 package example.voltvalvemod.block
 
 import example.voltvalvemod.VoltValveMod
+import example.voltvalvemod.block.custom.SolarPanelBlock
 import example.voltvalvemod.item.ModItems
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
@@ -18,6 +20,9 @@ object ModBlocks {
     // this is automatically registered by the deferred registry at the correct times
     val EXAMPLE_BLOCK = registerBlock("example_block") {
         Block(BlockBehaviour.Properties.of().lightLevel { 15 }.strength(3.0f))
+    }
+    val SOLAR_PANEL = registerBlock("solar_panel") {
+        SolarPanelBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion())
     }
 
     private fun <T : Block> registerBlock(name: String, block: Supplier<T>): RegistryObject<T> {
