@@ -1,4 +1,4 @@
-package example.voltvalvemod.block
+package example.voltvalvemod.block.interfaces
 
 interface Transmitter {
     fun getCurrent(): Double
