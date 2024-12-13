@@ -15,6 +15,7 @@ object ModCreativeModeTabs {
             .title(Component.literal("Volt & Valve"))
             .displayItems { itemDisplayParameters, output ->
                 output.accept(ModBlocks.EXAMPLE_BLOCK.get())
+                output.accept(ModItems.EXAMPLE_ITEM.get())
             }
             .build()
     }
