@@ -1,6 +1,5 @@
 package example.voltvalvemod.block.interfaces
 
-interface Generator {
-    fun getVoltage(): Double
-    fun getInnerResistance(): Double
+interface Generator: PowerNetworkPart {
+    fun providePower(): Long
 }

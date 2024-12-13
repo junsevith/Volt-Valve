@@ -1,13 +1,8 @@
 package example.voltvalvemod.block.interfaces
 
+import example.voltvalvemod.block.PowerGridState
+
 interface Transmitter {
-    fun getCurrent(): Double
-    fun setCurrent(): Double
-
-    fun getVoltage(): Double
-    fun setVoltage(): Double
-
-    fun getResistance(): Double
-
-    fun isFunctional(): Boolean
+    fun updateState()
+    fun getPowerGrid(): PowerGridState
 }
