@@ -17,7 +17,7 @@ class ItemModelProviderMod(output: PackOutput?, existingFileHelper: ExistingFile
         simpleItem(ModItems.EXAMPLE_ITEM)
     }
 
-    private fun simpleItem(item: RegistryObject<Item>): ItemModelBuilder {
+    private fun<T: Item> simpleItem(item: RegistryObject<T>): ItemModelBuilder {
         return withExistingParent(item.id.path, ResourceLocation("item/generated"))
             .texture("layer0", ResourceLocation(VoltValveMod.ID, "item/${item.id.path}"))
     }

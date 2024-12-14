@@ -9,7 +9,7 @@ object ModItems {
     val REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, VoltValveMod.ID)
 
     val EXAMPLE_ITEM = REGISTRY.register("example_item") {
-        Item(Item.Properties())
+        net.minecraft.world.item.SnowballItem(Item.Properties().durability(150))
     }
 
 }
