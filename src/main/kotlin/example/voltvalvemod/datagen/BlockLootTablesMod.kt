@@ -9,6 +9,7 @@ class BlockLootTablesMod :
     BlockLootSubProvider(emptySet(), FeatureFlags.REGISTRY.allFlags()) {
 
     override fun generate() {
+        //Tutaj ustawiamy loot dla bloków
         this.dropSelf(ModBlocks.EXAMPLE_BLOCK.get())
     }
 

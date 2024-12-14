@@ -16,7 +16,7 @@ class BlockTagsProviderMod(
 ) : BlockTagsProvider(output, lookupProvider, VoltValveMod.ID, existingFileHelper) {
 
     override fun addTags(pProvider: HolderLookup.Provider) {
-        //Tu się dodaje tagi do
+        //Tu się dodaje tagi do bloków
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(ModBlocks.EXAMPLE_BLOCK.get())
     }

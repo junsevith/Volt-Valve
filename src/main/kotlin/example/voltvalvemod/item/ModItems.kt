@@ -8,8 +8,9 @@ import net.minecraftforge.registries.ForgeRegistries
 object ModItems {
     val REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, VoltValveMod.ID)
 
+    //Tutaj dodajemy nowe przedmioty
     val EXAMPLE_ITEM = REGISTRY.register("example_item") {
-        net.minecraft.world.item.SnowballItem(Item.Properties().durability(150))
+        net.minecraft.world.item.SnowballItem(Item.Properties())
     }
 
 }

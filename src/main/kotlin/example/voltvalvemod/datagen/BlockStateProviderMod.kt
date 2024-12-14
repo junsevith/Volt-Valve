@@ -12,6 +12,7 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
     BlockStateProvider(output, VoltValveMod.ID, exFileHelper) {
 
     override fun registerStatesAndModels() {
+        //Tu się dodaje state do bloków
         blockWithItem(ModBlocks.EXAMPLE_BLOCK)
     }
 

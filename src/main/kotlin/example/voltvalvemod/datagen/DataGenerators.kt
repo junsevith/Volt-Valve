@@ -8,7 +8,8 @@ class DataGenerators {
     companion object {
 //        @SubscribeEvent
         fun gatherData(event: GatherDataEvent) {
-            VoltValveMod.LOGGER.info("Pierogi")
+            //Aby uruchomić generowanie należy wywołać polecenie gradle: runData
+            VoltValveMod.LOGGER.info("Generowanie plików json...")
 
             val generator = event.generator
             val packOutput = generator.packOutput

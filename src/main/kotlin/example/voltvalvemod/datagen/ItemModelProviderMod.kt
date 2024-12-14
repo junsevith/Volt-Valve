@@ -14,6 +14,7 @@ class ItemModelProviderMod(output: PackOutput?, existingFileHelper: ExistingFile
     ItemModelProvider(output, VoltValveMod.ID, existingFileHelper) {
 
     override fun registerModels() {
+        //Tutaj dodajemy tekstury do bloków
         simpleItem(ModItems.EXAMPLE_ITEM)
     }
 

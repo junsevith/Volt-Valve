@@ -17,6 +17,7 @@ class ItemTagsProviderMod(
 ) : ItemTagsProvider(p_275343_, p_275729_, p_275322_, VoltValveMod.ID, existingFileHelper) {
 
     override fun addTags(pProvider: HolderLookup.Provider) {
+        //Tutaj dodajemy tagi do przedmiotów
 //        TODO("No items that need tags")
     }
 }

@@ -17,6 +17,7 @@ class RecipeProviderMod(pOutput: PackOutput) :
     IConditionBuilder{
 
     override fun buildRecipes(pWriter: Consumer<FinishedRecipe>) {
+        //Tutaj ustawiamy przepisy dla blooków i przedmiotów
         exampleBlockRecipe(pWriter)
         exampleItemRecipe(pWriter)
 
