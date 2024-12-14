@@ -11,6 +11,8 @@ class BlockLootTablesMod :
     override fun generate() {
         //Tutaj ustawiamy loot dla bloków
         this.dropSelf(ModBlocks.EXAMPLE_BLOCK.get())
+
+        this.dropSelf(ModBlocks.CABLE.get())
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {

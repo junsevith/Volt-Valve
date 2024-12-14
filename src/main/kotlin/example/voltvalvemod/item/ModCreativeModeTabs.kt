@@ -17,6 +17,7 @@ object ModCreativeModeTabs {
                 //Tutaj dodjemy rzeczy do zakładki w creative
                 output.accept(ModBlocks.EXAMPLE_BLOCK.get())
                 output.accept(ModItems.EXAMPLE_ITEM.get())
+                output.accept(ModBlocks.CABLE.get())
             }
             .build()
     }
