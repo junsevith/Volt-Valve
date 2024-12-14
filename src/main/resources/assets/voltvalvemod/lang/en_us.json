@@ -1,4 +1,5 @@
 {
   "block.voltvalvemod.example_block": "Example Block",
-  "item.voltvalvemod.example_item": "Example Item"
+  "item.voltvalvemod.example_item": "Example Item",
+  "block.voltvalvemod.cable": "Cable"
 }

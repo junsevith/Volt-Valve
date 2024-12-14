@@ -1,5 +1,6 @@
 package example.voltvalvemod.block.interfaces
 
 interface Reciever: PowerNetworkPart {
-    fun requestPower(amount: Long): Long
+    fun getPowerRequest(): Long
+    fun providePower(amount: Long)
 }

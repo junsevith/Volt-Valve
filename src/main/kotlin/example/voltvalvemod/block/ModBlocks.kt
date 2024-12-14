@@ -22,6 +22,10 @@ object ModBlocks {
         Block(BlockBehaviour.Properties.of().lightLevel { 15 }.strength(3.0f))
     }
 
+    val CABLE = registerBlock("cable") {
+        Cable()
+    }
+
     private fun <T : Block> registerBlock(name: String, block: Supplier<T>): RegistryObject<T> {
         val toReturn = REGISTRY.register(name, block)
         registerBlockItem(name, toReturn)
