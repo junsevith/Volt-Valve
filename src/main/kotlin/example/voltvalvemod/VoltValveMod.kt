@@ -1,6 +1,7 @@
 package example.voltvalvemod
 
 import example.voltvalvemod.block.ModBlocks
+import example.voltvalvemod.datagen.DataGenerators
 import example.voltvalvemod.item.ModCreativeModeTabs
 import example.voltvalvemod.item.ModItems
 import net.minecraft.client.Minecraft
@@ -31,10 +32,15 @@ object VoltValveMod {
     init {
         LOGGER.log(Level.INFO, "Hello world!")
 
+        // You run the data generators with gradle command runData
+        MOD_BUS.addListener(DataGenerators::gatherData)
+
         // Register the KDeferredRegister to the mod-specific event bus
         ModBlocks.REGISTRY.register(MOD_BUS)
         ModItems.REGISTRY.register(MOD_BUS)
         ModCreativeModeTabs.REGISTRY.register(MOD_BUS)
+
+
 
         val obj = runForDist(
             clientTarget = {
