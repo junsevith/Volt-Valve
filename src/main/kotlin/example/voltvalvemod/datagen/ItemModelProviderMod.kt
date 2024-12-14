@@ -10,7 +10,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider
 import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.registries.RegistryObject
 
-class ModItemModelProvider(output: PackOutput?, existingFileHelper: ExistingFileHelper?) :
+class ItemModelProviderMod(output: PackOutput?, existingFileHelper: ExistingFileHelper?) :
     ItemModelProvider(output, VoltValveMod.ID, existingFileHelper) {
 
     override fun registerModels() {

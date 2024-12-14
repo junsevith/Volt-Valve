@@ -8,7 +8,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider
 import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.registries.RegistryObject
 
-class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper):
+class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper):
     BlockStateProvider(output, VoltValveMod.ID, exFileHelper) {
 
     override fun registerStatesAndModels() {

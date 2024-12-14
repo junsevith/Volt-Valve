@@ -12,7 +12,7 @@ import net.minecraft.world.item.Items
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder
 import java.util.function.Consumer
 
-class ModRecipeProvider(pOutput: PackOutput) :
+class RecipeProviderMod(pOutput: PackOutput) :
     RecipeProvider(pOutput),
     IConditionBuilder{
 
