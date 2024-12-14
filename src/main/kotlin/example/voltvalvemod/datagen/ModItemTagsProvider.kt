@@ -10,12 +10,12 @@ import net.minecraftforge.common.data.ExistingFileHelper
 import java.util.concurrent.CompletableFuture
 
 class ModItemTagsProvider(
-    pOutput: PackOutput,
-    pLookupProvider: CompletableFuture<HolderLookup.Provider>,
-    pParentProvider: CompletableFuture<TagLookup<Item>>,
-    pBlockTags: CompletableFuture<TagLookup<Block>>,
+    p_275343_: PackOutput,
+    p_275729_: CompletableFuture<HolderLookup.Provider>,
+    p_275322_: CompletableFuture<TagLookup<Block>>,
     existingFileHelper: ExistingFileHelper?
-) : ItemTagsProvider(pOutput, pLookupProvider, pParentProvider, pBlockTags, VoltValveMod.ID, existingFileHelper) {
+
+) : ItemTagsProvider(p_275343_, p_275729_, p_275322_, VoltValveMod.ID, existingFileHelper) {
 
     override fun addTags(pProvider: HolderLookup.Provider) {
         TODO("No items that need tags")
