@@ -5,7 +5,6 @@
   "block.voltvalvemod.test_generator": "Testowy Generator",
   "block.voltvalvemod.test_reciever": "Testowy Odbiornik",
   "block.voltvalvemod.example_entity": "Przykładowe Entity",
-  "block.voltvalvemod.example_block": "Przykładowy blok",
   "block.voltvalvemod.solar_panel": "Panel słoneczny",
   "block.voltvalvemod.socket": "Gniazdo elektryczne"
 }

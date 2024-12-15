@@ -21,6 +21,8 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
         blockWithItem(ModBlocks.TEST_GENERATOR)
         blockWithItem(ModBlocks.TEST_RECIEVER)
         blockWithItem(ModBlocks.EXAMPLE_ENTITY)
+        socketBlock()
+        blockWithItem(ModBlocks.SOLAR_PANEL)
     }
 
     private fun<B: Block> blockWithItem(blockRegistryObject: RegistryObject<B>) {
@@ -33,6 +35,14 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
             ModBlocks.CABLE.get(),
             models().fencePost(baseName + "_post", mcLoc("block/quartz_block_side")),
             models().fenceSide(baseName + "_side", blockTexture(Blocks.COPPER_BLOCK)),
+        )
+    }
+
+    fun socketBlock() {
+        val baseName = key(ModBlocks.SOCKET.get()).toString()
+        directionalBlock(
+            ModBlocks.SOCKET.get(),
+            models().cubeTop(baseName, mcLoc("voltvalvemod:block/"+baseName+"_side"), mcLoc("voltvalvemod:block/"+baseName+"_front"))
         )
     }
 
