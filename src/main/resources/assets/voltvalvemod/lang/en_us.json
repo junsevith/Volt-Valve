@@ -1,5 +1,10 @@
 {
   "block.voltvalvemod.example_block": "Example Block",
+  "item.voltvalvemod.example_item": "Example Item",
+  "block.voltvalvemod.cable": "Cable",
+  "block.voltvalvemod.test_generator": "Test Generator",
+  "block.voltvalvemod.test_reciever": "Test Reciever",
+  "block.voltvalvemod.example_entity": "Example Entity",
   "block.voltvalvemod.solar_panel": "Solar Panel",
   "block.voltvalvemod.socket": "Socket"
 }

@@ -162,3 +162,10 @@ publishing {
         }
     }
 }
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}

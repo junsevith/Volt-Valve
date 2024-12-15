@@ -14,9 +14,15 @@ object ModCreativeModeTabs {
         CreativeModeTab.builder().icon(ModBlocks.EXAMPLE_BLOCK.get().asItem()::getDefaultInstance)
             .title(Component.literal("Volt & Valve"))
             .displayItems { itemDisplayParameters, output ->
+                //Tutaj dodjemy rzeczy do zakładki w creative
                 output.accept(ModBlocks.EXAMPLE_BLOCK.get())
                 output.accept(ModBlocks.SOLAR_PANEL.get())
                 output.accept(ModBlocks.SOCKET.get())
+                output.accept(ModItems.EXAMPLE_ITEM.get())
+                output.accept(ModBlocks.CABLE.get())
+                output.accept(ModBlocks.TEST_GENERATOR.get())
+                output.accept(ModBlocks.TEST_RECIEVER.get())
+                output.accept(ModBlocks.EXAMPLE_ENTITY.get())
             }
             .build()
     }
