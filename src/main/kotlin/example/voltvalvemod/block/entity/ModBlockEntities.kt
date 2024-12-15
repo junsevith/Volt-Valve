@@ -20,6 +20,7 @@ object ModBlockEntities {
             ).build(null)
         }
 
+
     val ELECTRIC_FURNACE_BE: RegistryObject<BlockEntityType<ElectricFurnace>> =
         REGISTRY.register("electric_furnace_be") {
             BlockEntityType.Builder.of(
@@ -27,5 +28,26 @@ object ModBlockEntities {
             ).build(null)
         }
 
+
+    val CABLE_BE: RegistryObject<BlockEntityType<CableEntity>> =
+        REGISTRY.register("cable_be") {
+            BlockEntityType.Builder.of(
+                ::CableEntity, ModBlocks.CABLE.get()
+            ).build(null)
+        }
+
+    val TEST_GENERATOR_BE: RegistryObject<BlockEntityType<TestGeneratorEntity>> =
+        REGISTRY.register("test_generator_be") {
+            BlockEntityType.Builder.of(
+                ::TestGeneratorEntity, ModBlocks.TEST_GENERATOR.get()
+            ).build(null)
+        }
+
+    val TEST_RECIEVER_BE: RegistryObject<BlockEntityType<TestRecieverEntity>> =
+        REGISTRY.register("test_reciever_be") {
+            BlockEntityType.Builder.of(
+                ::TestRecieverEntity, ModBlocks.TEST_RECIEVER.get()
+            ).build(null)
+        }
 }
 

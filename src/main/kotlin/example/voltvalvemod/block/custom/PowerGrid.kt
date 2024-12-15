@@ -1,5 +1,6 @@
 package example.voltvalvemod.block.custom
 
+import example.voltvalvemod.VoltValveMod
 import example.voltvalvemod.block.interfaces.Generator
 import example.voltvalvemod.block.interfaces.Reciever
 import example.voltvalvemod.block.interfaces.Transmitter
@@ -45,6 +46,7 @@ class PowerGrid {
 
     fun addTransmitter(transmitter: Transmitter) {
         transmitters.add(transmitter)
+        updateNetwork()
     }
 
     fun removeTransmitter(transmitter: Transmitter) {
@@ -67,26 +69,32 @@ class PowerGrid {
                 it.rebuildNetwork()
             }
         }
+
+        updateNetwork()
     }
 
     fun updateNetwork() {
 
-        var uniform = generatedPower / recievers.size
-        var usedpower = 0L
-        var done = 0
+        if (recievers.isNotEmpty()) {
+            var uniform = generatedPower / recievers.size
+            var usedpower = 0L
+            var done = 0
 
-        val sortedRecievers = recievers.toList()
-            .sortedBy { (_key, value) -> value }
+            val sortedRecievers = recievers.toList()
+                .sortedBy { (_key, value) -> value }
 
-        sortedRecievers.forEach { (reciever, requestedPower) ->
-            val sentPower = requestedPower.coerceAtMost(uniform)
-            reciever.providePower(sentPower)
-            usedpower += sentPower
-            done++
-            uniform = (generatedPower - usedpower) / (recievers.size - done)
+            sortedRecievers.forEach { (reciever, requestedPower) ->
+                val sentPower = requestedPower.coerceAtMost(uniform)
+                reciever.providePower(sentPower)
+                usedpower += sentPower
+                done++
+                if (done < recievers.size) {
+                    uniform = (generatedPower - usedpower) / (recievers.size - done)
+                }
+            }
         }
 
-
+        VoltValveMod.LOGGER.info("Transmitters: ${transmitters.size}, Recievers: ${recievers.size}, Generators: ${generators.size}")
 
     }
 }
