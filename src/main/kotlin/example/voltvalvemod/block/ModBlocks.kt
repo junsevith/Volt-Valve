@@ -1,10 +1,7 @@
 package example.voltvalvemod.block
 
 import example.voltvalvemod.VoltValveMod
-import example.voltvalvemod.block.custom.Cable
-import example.voltvalvemod.block.custom.ExampleEntityBlock
-import example.voltvalvemod.block.custom.TestGenerator
-import example.voltvalvemod.block.custom.TestReciever
+import example.voltvalvemod.block.custom.*
 import example.voltvalvemod.item.ModItems
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
@@ -38,6 +35,11 @@ object ModBlocks {
             BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()
         )
     }
+    val ELECTRIC_FURNACE: RegistryObject<Block> = registerBlock("electric_furnace") {
+        ExampleEntityBlock(
+            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()
+        )
+    }
 
 
     private fun <T : Block> registerBlock(name: String, block: Supplier<T>): RegistryObject<T> {
@@ -49,4 +51,8 @@ object ModBlocks {
     private fun <T : Block> registerBlockItem(name: String, block: RegistryObject<T>): RegistryObject<BlockItem>? {
         return ModItems.REGISTRY.register(name) { BlockItem(block.get(), Item.Properties()) }
     }
+
+    val BLOCKS: DeferredRegister<Block> = DeferredRegister.create(ForgeRegistries.BLOCKS, VoltValveMod.ID)
+
 }
+
