@@ -84,7 +84,7 @@ class ElectricFurnace(pPos: BlockPos, pBlockState: BlockState) :
     }
 
     override fun getDisplayName(): Component {
-        return Component.translatable("block.tutorialmod.electric_furnace")
+        return Component.translatable("block.voltvalvemod.electric_furnace")
     }
 
     override fun createMenu(pContainerId: Int, pPlayerInventory: Inventory, pPlayer: Player): AbstractContainerMenu? {

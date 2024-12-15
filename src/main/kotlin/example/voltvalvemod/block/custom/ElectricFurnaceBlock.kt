@@ -1,5 +1,6 @@
 package example.voltvalvemod.block.custom
 
+import example.voltvalvemod.block.entity.ElectricFurnace
 import example.voltvalvemod.block.entity.ExampleEntity
 import example.voltvalvemod.block.entity.ModBlockEntities
 import net.minecraft.core.BlockPos
@@ -7,6 +8,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
+import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.BaseEntityBlock
 import net.minecraft.world.level.block.RenderShape
@@ -15,6 +17,8 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.BlockHitResult
+import net.minecraft.world.phys.shapes.CollisionContext
+import net.minecraft.world.phys.shapes.VoxelShape
 import net.minecraftforge.network.NetworkHooks
 
 class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
@@ -40,6 +44,7 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
     ) {
         if (pState.block !== pNewState.block) {
             val blockEntity = pLevel.getBlockEntity(pPos)
+            //to be fixed
             if (blockEntity is ExampleEntity) {
                 blockEntity.drops()
             }
@@ -58,6 +63,7 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
     ): InteractionResult {
         if (!pLevel.isClientSide()) {
             val entity = pLevel.getBlockEntity(pPos)
+            //to be fixed
             if (entity is ExampleEntity) {
                 NetworkHooks.openScreen((pPlayer as ServerPlayer), entity, pPos)
             } else {
@@ -69,6 +75,7 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
     }
 
     override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity {
+        //to be fixed
         return ExampleEntity(pPos, pState)
     }
 
@@ -93,6 +100,6 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
     }
 
 //    companion object {
-//        val SHAPE: VoxelShape = box(0.0, 0.0, 0.0, 16.0, 12.0, 16.0)
+//        val SHAPE: VoxelShape = box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)
 //    }
 }

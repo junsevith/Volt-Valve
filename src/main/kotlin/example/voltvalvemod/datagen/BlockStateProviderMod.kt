@@ -23,10 +23,7 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
         blockWithItem(ModBlocks.TEST_GENERATOR)
         blockWithItem(ModBlocks.TEST_RECIEVER)
         blockWithItem(ModBlocks.EXAMPLE_ENTITY)
-        simpleBlockWithItem(
-                ModBlocks.ELECTRIC_FURNACE.get(),
-        UncheckedModelFile(modLoc("block/electric_furnace"))
-        )
+        simpleBlockWithItem(ModBlocks.ELECTRIC_FURNACE.get(), UncheckedModelFile(modLoc("block/electric_furnace")))
     }
 
     private fun<B: Block> blockWithItem(blockRegistryObject: RegistryObject<B>) {
