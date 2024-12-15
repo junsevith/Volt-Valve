@@ -1,4 +1,4 @@
-package example.voltvalvemod.block
+package example.voltvalvemod.block.custom
 
 import example.voltvalvemod.block.interfaces.Reciever
 import net.minecraft.world.level.block.Block

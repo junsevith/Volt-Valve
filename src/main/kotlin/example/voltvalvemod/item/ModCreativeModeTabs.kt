@@ -18,6 +18,9 @@ object ModCreativeModeTabs {
                 output.accept(ModBlocks.EXAMPLE_BLOCK.get())
                 output.accept(ModItems.EXAMPLE_ITEM.get())
                 output.accept(ModBlocks.CABLE.get())
+                output.accept(ModBlocks.TEST_GENERATOR.get())
+                output.accept(ModBlocks.TEST_RECIEVER.get())
+                output.accept(ModBlocks.EXAMPLE_ENTITY.get())
             }
             .build()
     }

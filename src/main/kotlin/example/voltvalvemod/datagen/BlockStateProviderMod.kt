@@ -18,9 +18,12 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
         //Tu się dodaje state do bloków
         blockWithItem(ModBlocks.EXAMPLE_BLOCK)
         cableBlock()
+        blockWithItem(ModBlocks.TEST_GENERATOR)
+        blockWithItem(ModBlocks.TEST_RECIEVER)
+        blockWithItem(ModBlocks.EXAMPLE_ENTITY)
     }
 
-    private fun blockWithItem(blockRegistryObject: RegistryObject<Block>) {
+    private fun<B: Block> blockWithItem(blockRegistryObject: RegistryObject<B>) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()))
     }
 
@@ -28,7 +31,7 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
         val baseName = key(ModBlocks.CABLE.get()).toString()
         fourWayBlock(
             ModBlocks.CABLE.get(),
-            models().fencePost(baseName + "_post", blockTexture(Blocks.WHITE_CONCRETE)),
+            models().fencePost(baseName + "_post", mcLoc("block/quartz_block_side")),
             models().fenceSide(baseName + "_side", blockTexture(Blocks.COPPER_BLOCK)),
         )
     }

@@ -1,5 +1,7 @@
 {
   "values": [
-    "voltvalvemod:cable"
+    "voltvalvemod:cable",
+    "voltvalvemod:test_generator",
+    "voltvalvemod:test_reciever"
   ]
 }

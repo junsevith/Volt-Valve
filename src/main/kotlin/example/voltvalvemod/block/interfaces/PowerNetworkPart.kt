@@ -1,6 +1,6 @@
 package example.voltvalvemod.block.interfaces
 
-import example.voltvalvemod.block.PowerGrid
+import example.voltvalvemod.block.custom.PowerGrid
 
 interface PowerNetworkPart {
     var powerGrid: PowerGrid?

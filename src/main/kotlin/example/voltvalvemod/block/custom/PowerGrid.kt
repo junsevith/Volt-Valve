@@ -1,4 +1,4 @@
-package example.voltvalvemod.block
+package example.voltvalvemod.block.custom
 
 import example.voltvalvemod.block.interfaces.Generator
 import example.voltvalvemod.block.interfaces.Reciever
@@ -10,6 +10,7 @@ class PowerGrid {
     var transmitters: MutableSet<Transmitter> = mutableSetOf()
 
     var generatedPower: Long = 0
+    var suppliedPower: Long = 0
     var requestedPower: Long = 0
 
     fun updateGenerator(generator: Generator) {
@@ -49,8 +50,16 @@ class PowerGrid {
     fun removeTransmitter(transmitter: Transmitter) {
         transmitters.remove(transmitter)
 
+        generators.forEach {
+            it.key.powerGrid = null
+        }
+
         transmitters.forEach {
             it.powerGrid = null
+        }
+
+        recievers.forEach {
+            it.key.powerGrid = null
         }
 
         transmitters.forEach {
@@ -61,6 +70,23 @@ class PowerGrid {
     }
 
     fun updateNetwork() {
+
+        var uniform = generatedPower / recievers.size
+        var usedpower = 0L
+        var done = 0
+
+        val sortedRecievers = recievers.toList()
+            .sortedBy { (_key, value) -> value }
+
+        sortedRecievers.forEach { (reciever, requestedPower) ->
+            val sentPower = requestedPower.coerceAtMost(uniform)
+            reciever.providePower(sentPower)
+            usedpower += sentPower
+            done++
+            uniform = (generatedPower - usedpower) / (recievers.size - done)
+        }
+
+
 
     }
 }

@@ -1,15 +1,21 @@
 package example.voltvalvemod.block
 
 import example.voltvalvemod.VoltValveMod
+import example.voltvalvemod.block.custom.Cable
+import example.voltvalvemod.block.custom.ExampleEntityBlock
+import example.voltvalvemod.block.custom.TestGenerator
+import example.voltvalvemod.block.custom.TestReciever
 import example.voltvalvemod.item.ModItems
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
 import java.util.function.Supplier
+
 
 object ModBlocks {
     val REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, VoltValveMod.ID)
@@ -22,9 +28,17 @@ object ModBlocks {
         Block(BlockBehaviour.Properties.of().lightLevel { 15 }.strength(3.0f))
     }
 
-    val CABLE = registerBlock("cable") {
-        Cable()
+    val CABLE = registerBlock("cable") { Cable() }
+    val TEST_GENERATOR = registerBlock("test_generator") { TestGenerator() }
+    val TEST_RECIEVER = registerBlock("test_reciever") { TestReciever() }
+
+
+    val EXAMPLE_ENTITY: RegistryObject<Block> = registerBlock("example_entity") {
+        ExampleEntityBlock(
+            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()
+        )
     }
+
 
     private fun <T : Block> registerBlock(name: String, block: Supplier<T>): RegistryObject<T> {
         val toReturn = REGISTRY.register(name, block)

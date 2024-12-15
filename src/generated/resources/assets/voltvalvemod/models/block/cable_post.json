@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/fence_post",
   "textures": {
-    "texture": "minecraft:block/white_concrete"
+    "texture": "minecraft:block/quartz_block_side"
   }
 }

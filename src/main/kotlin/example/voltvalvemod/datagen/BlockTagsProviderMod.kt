@@ -26,5 +26,7 @@ class BlockTagsProviderMod(
 
         this.tag(ModTags.Blocks.POWER_NETWORK_PART)
             .add(ModBlocks.CABLE.get())
+            .add(ModBlocks.TEST_GENERATOR.get())
+            .add(ModBlocks.TEST_RECIEVER.get())
     }
 }

@@ -13,6 +13,9 @@ class BlockLootTablesMod :
         this.dropSelf(ModBlocks.EXAMPLE_BLOCK.get())
 
         this.dropSelf(ModBlocks.CABLE.get())
+        this.dropSelf(ModBlocks.TEST_GENERATOR.get())
+        this.dropSelf(ModBlocks.TEST_RECIEVER.get())
+        this.dropSelf(ModBlocks.EXAMPLE_ENTITY.get())
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {
