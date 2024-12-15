@@ -12,6 +12,11 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
     BlockEntity(ModBlockEntities.CABLE_BE.get(), pPos, pBlockState),  Transmitter {
 
     override var powerGrid: PowerGrid? = null
+        set(value) {
+            field = value
+
+            field?.addTransmitter(this)
+        }
 
     override fun onLoad() {
         super.onLoad()
@@ -29,8 +34,11 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
 
         val powerNetworkParts = neighbors.filterIsInstance<PowerNetworkPart>()
 
-        val powerGrids = powerNetworkParts.mapNotNull { it.powerGrid }
+//        val powerGrids = powerNetworkParts.mapNotNull { it.powerGrid }
 
+        val (somePowerGrid, noPowerGrid) = powerNetworkParts.partition { it.powerGrid != null }
+
+        val powerGrids = somePowerGrid.mapNotNull { it.powerGrid }
         if (powerGrids.isNotEmpty()){
             this.powerGrid = powerGrids.first()
             VoltValveMod.LOGGER.info("Connected to powergrid at at $worldPosition")
@@ -38,7 +46,10 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
             this.powerGrid = PowerGrid()
             VoltValveMod.LOGGER.info("New powergrid at $worldPosition")
         }
-        this.powerGrid!!.addTransmitter(this)
+
+        noPowerGrid.forEach {
+            it.powerGrid = this.powerGrid
+        }
 
     }
 
@@ -50,6 +61,7 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
     override fun isOn(): Boolean {
         return true
     }
+    
 
 //    override fun createMenu(pContainerId: Int, pPlayerInventory: Inventory, pPlayer: Player): AbstractContainerMenu? {
 //        return ExampleEntityMenu(pContainerId, pPlayerInventory, this, this.data)

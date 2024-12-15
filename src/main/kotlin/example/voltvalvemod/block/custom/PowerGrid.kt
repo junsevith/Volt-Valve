@@ -88,7 +88,9 @@ class PowerGrid {
                 reciever.providePower(sentPower)
                 usedpower += sentPower
                 done++
-                uniform = (generatedPower - usedpower) / (recievers.size - done)
+                if (done < recievers.size) {
+                    uniform = (generatedPower - usedpower) / (recievers.size - done)
+                }
             }
         }
 
