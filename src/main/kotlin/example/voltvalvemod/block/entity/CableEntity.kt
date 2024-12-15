@@ -32,15 +32,19 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
         val powerGrids = powerNetworkParts.mapNotNull { it.powerGrid }
 
         if (powerGrids.isNotEmpty()){
-            val newPowerGrid = powerGrids.first()
-            this.powerGrid = newPowerGrid
-            newPowerGrid.addTransmitter(this)
+            this.powerGrid = powerGrids.first()
             VoltValveMod.LOGGER.info("Connected to powergrid at at $worldPosition")
         } else {
             this.powerGrid = PowerGrid()
             VoltValveMod.LOGGER.info("New powergrid at $worldPosition")
         }
+        this.powerGrid!!.addTransmitter(this)
 
+    }
+
+    fun disconnect(){
+        this.powerGrid!!.removeTransmitter(this)
+        VoltValveMod.LOGGER.info("Disconnected from powergrid at $worldPosition")
     }
 
     override fun isOn(): Boolean {

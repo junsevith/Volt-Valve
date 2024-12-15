@@ -32,11 +32,10 @@ class Cable :
     ) {
         if (pState.block !== pNewState.block) {
             val blockEntity = pLevel.getBlockEntity(pPos)
-            if (blockEntity is ExampleEntity) {
-                blockEntity.drops()
+            if (blockEntity is CableEntity) {
+                blockEntity.disconnect()
             }
         }
-
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving)
     }
 
