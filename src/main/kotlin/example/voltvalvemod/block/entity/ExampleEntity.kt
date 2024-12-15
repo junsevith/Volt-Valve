@@ -87,7 +87,7 @@ class ExampleEntity(pPos: BlockPos, pBlockState: BlockState) :
         return Component.translatable("block.tutorialmod.gem_polishing_station")
     }
 
-    override fun createMenu(pContainerId: Int, pPlayerInventory: Inventory, pPlayer: Player): AbstractContainerMenu? {
+    override fun createMenu(pContainerId: Int, pPlayerInventory: Inventory, pPlayer: Player): AbstractContainerMenu {
         return ExampleEntityMenu(pContainerId, pPlayerInventory, this, this.data)
     }
 

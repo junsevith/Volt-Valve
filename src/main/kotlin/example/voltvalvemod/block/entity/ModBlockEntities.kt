@@ -17,4 +17,11 @@ object ModBlockEntities {
                 ::ExampleEntity, ModBlocks.EXAMPLE_ENTITY.get()
             ).build(null)
         }
+
+    val CABLE_BE: RegistryObject<BlockEntityType<CableEntity>> =
+        REGISTRY.register("cable_be") {
+            BlockEntityType.Builder.of(
+                ::CableEntity, ModBlocks.CABLE.get()
+            ).build(null)
+        }
 }
