@@ -45,7 +45,7 @@ object VoltValveMod {
         ModCreativeModeTabs.REGISTRY.register(MOD_BUS)
         ModBlockEntities.REGISTRY.register(MOD_BUS)
         ModMenuTypes.REGISTRY.register(MOD_BUS)
-
+        ModBlocks.BLOCKS.register(MOD_BUS)
 
         val obj = runForDist(
             clientTarget = {

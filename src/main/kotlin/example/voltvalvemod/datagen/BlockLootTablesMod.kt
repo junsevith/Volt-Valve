@@ -11,7 +11,7 @@ class BlockLootTablesMod :
     override fun generate() {
         //Tutaj ustawiamy loot dla bloków
         this.dropSelf(ModBlocks.EXAMPLE_BLOCK.get())
-
+        this.dropSelf(ModBlocks.ELECTRIC_FURNACE.get())
         this.dropSelf(ModBlocks.CABLE.get())
         this.dropSelf(ModBlocks.TEST_GENERATOR.get())
         this.dropSelf(ModBlocks.TEST_RECIEVER.get())

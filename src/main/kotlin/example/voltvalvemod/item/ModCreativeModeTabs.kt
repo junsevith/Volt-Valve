@@ -21,6 +21,7 @@ object ModCreativeModeTabs {
                 output.accept(ModBlocks.TEST_GENERATOR.get())
                 output.accept(ModBlocks.TEST_RECIEVER.get())
                 output.accept(ModBlocks.EXAMPLE_ENTITY.get())
+                output.accept(ModBlocks.ELECTRIC_FURNACE.get())
             }
             .build()
     }

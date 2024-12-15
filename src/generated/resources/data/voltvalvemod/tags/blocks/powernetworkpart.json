@@ -2,6 +2,7 @@
   "values": [
     "voltvalvemod:cable",
     "voltvalvemod:test_generator",
-    "voltvalvemod:test_reciever"
+    "voltvalvemod:test_reciever",
+    "voltvalvemod:electric_furnace"
   ]
 }

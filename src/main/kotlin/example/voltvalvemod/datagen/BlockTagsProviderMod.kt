@@ -28,5 +28,6 @@ class BlockTagsProviderMod(
             .add(ModBlocks.CABLE.get())
             .add(ModBlocks.TEST_GENERATOR.get())
             .add(ModBlocks.TEST_RECIEVER.get())
+            .add(ModBlocks.ELECTRIC_FURNACE.get())
     }
 }
