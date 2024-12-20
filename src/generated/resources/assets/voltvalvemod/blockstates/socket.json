@@ -1,27 +1,28 @@
 {
   "variants": {
+    "facing=down": {
+      "model": "voltvalvemod:block/socket",
+      "x": 90
+    },
     "facing=east": {
       "model": "voltvalvemod:block/socket",
-      "y": 90
+      "y": 450
     },
     "facing=north": {
-      "model": "voltvalvemod:block/socket"
+      "model": "voltvalvemod:block/socket",
+      "y": 360
     },
     "facing=south": {
       "model": "voltvalvemod:block/socket",
       "y": 180
     },
-    "facing=west": {
-      "model": "voltvalvemod:block/socket",
-      "y": 270
-    },
     "facing=up": {
       "model": "voltvalvemod:block/socket",
       "x": 270
     },
-    "facing=down": {
+    "facing=west": {
       "model": "voltvalvemod:block/socket",
-      "x": 90
+      "y": 270
     }
   }
 }

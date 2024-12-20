@@ -2,11 +2,15 @@ package example.voltvalvemod.datagen
 
 import example.voltvalvemod.VoltValveMod
 import example.voltvalvemod.block.ModBlocks
+import net.minecraft.core.Direction
 import net.minecraft.data.PackOutput
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraftforge.client.model.generators.BlockStateProvider
+import net.minecraftforge.client.model.generators.ConfiguredModel
 import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
@@ -22,7 +26,7 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
         blockWithItem(ModBlocks.TEST_RECIEVER)
         blockWithItem(ModBlocks.EXAMPLE_ENTITY)
         socketBlock()
-        blockWithItem(ModBlocks.SOLAR_PANEL)
+        solarPanelBlock()
     }
 
     private fun<B: Block> blockWithItem(blockRegistryObject: RegistryObject<B>) {
@@ -39,11 +43,33 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
     }
 
     fun socketBlock() {
-        val baseName = key(ModBlocks.SOCKET.get()).toString()
-        directionalBlock(
-            ModBlocks.SOCKET.get(),
-            models().cubeTop(baseName, mcLoc("voltvalvemod:block/"+baseName+"_side"), mcLoc("voltvalvemod:block/"+baseName+"_front"))
-        )
+        val key = key(ModBlocks.SOCKET.get())
+        val model = models().orientable(key.toString(),
+            modLoc("block/socket_side"),
+            modLoc("block/socket_front"),
+            modLoc("block/socket_side"))
+
+        getVariantBuilder(ModBlocks.SOCKET.get())
+            .forAllStates { state: BlockState ->
+                val dir = state.getValue(BlockStateProperties.FACING)
+                ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationX(if (dir == Direction.DOWN) 90 else if (dir.axis.isHorizontal) 0 else 270)
+                    .rotationY(if (dir.axis.isVertical) 0 else ((dir.toYRot().toInt())) + 180 % 360)
+                    .build()
+            }
+
+        itemModels().getBuilder(key!!.path).parent(model)
+    }
+
+    fun solarPanelBlock() {
+        val key = key(ModBlocks.SOLAR_PANEL.get())
+        val model = models().withExistingParent(key.toString(), "block/template_daylight_detector")
+            .texture("side", blockTexture(Blocks.IRON_BLOCK))
+            .texture("top", modLoc("block/solar_panel"))
+
+        simpleBlock(ModBlocks.SOLAR_PANEL.get(), model)
+        itemModels().getBuilder(key!!.path).parent(model)
     }
 
     private fun key(block: Block): ResourceLocation? {
