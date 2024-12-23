@@ -2,6 +2,7 @@ package example.voltvalvemod.block.entity
 
 import example.voltvalvemod.VoltValveMod
 import example.voltvalvemod.block.ModBlocks
+import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
@@ -22,6 +23,20 @@ object ModBlockEntities {
         REGISTRY.register("cable_be") {
             BlockEntityType.Builder.of(
                 ::CableEntity, ModBlocks.CABLE.get()
+            ).build(null)
+        }
+
+    val SOLAR_PANEL_BE: RegistryObject<BlockEntityType<SolarPanelBlockEntity>> =
+        REGISTRY.register("solar_panel_be") {
+            BlockEntityType.Builder.of(
+                ::SolarPanelBlockEntity, ModBlocks.SOLAR_PANEL.get()
+            ).build(null)
+        }
+
+    val SOCKET_BE: RegistryObject<BlockEntityType<SocketBlockEntity>> =
+        REGISTRY.register("socket_be") {
+            BlockEntityType.Builder.of(
+                ::SocketBlockEntity, ModBlocks.SOLAR_PANEL.get()
             ).build(null)
         }
 

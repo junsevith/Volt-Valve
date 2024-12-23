@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraftforge.client.model.generators.BlockStateProvider
 import net.minecraftforge.client.model.generators.ConfiguredModel
+import net.minecraftforge.client.model.generators.ModelFile
 import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
@@ -49,7 +50,12 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
             modLoc("block/socket_front"),
             modLoc("block/socket_side"))
 
-        getVariantBuilder(ModBlocks.SOCKET.get())
+        myDirectionalBlock(ModBlocks.SOCKET.get(), model)
+        itemModels().getBuilder(key!!.path).parent(model)
+    }
+
+    private fun myDirectionalBlock(block: Block, model: ModelFile) {
+        getVariantBuilder(block)
             .forAllStates { state: BlockState ->
                 val dir = state.getValue(BlockStateProperties.FACING)
                 ConfiguredModel.builder()
@@ -58,8 +64,6 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
                     .rotationY(if (dir.axis.isVertical) 0 else ((dir.toYRot().toInt())) + 180 % 360)
                     .build()
             }
-
-        itemModels().getBuilder(key!!.path).parent(model)
     }
 
     fun solarPanelBlock() {
