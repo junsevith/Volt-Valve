@@ -1,22 +1,16 @@
 package example.voltvalvemod.block.custom
 
 import example.voltvalvemod.VoltValveMod
-import example.voltvalvemod.block.entity.ExampleEntity
+import example.voltvalvemod.block.entity.CableEntity
 import example.voltvalvemod.block.entity.ModBlockEntities
 import example.voltvalvemod.block.entity.SolarPanelBlockEntity
-import example.voltvalvemod.block.interfaces.Generator
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerLevel
-import net.minecraft.server.level.ServerPlayer
-import net.minecraft.util.RandomSource
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.BaseEntityBlock
-import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.EntityBlock
 import net.minecraft.world.level.block.RenderShape
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityTicker
@@ -25,10 +19,10 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
-import net.minecraftforge.network.NetworkHooks
+import java.awt.Panel
 
 class SolarPanelBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
-    val SHAPE = box(0.0, 0.0, 0.0, 16.0, 6.0, 16.0)
+    private val SHAPE = box(0.0, 0.0, 0.0, 16.0, 6.0, 16.0)
 
     override fun getShape(pState: BlockState, pLevel: BlockGetter, pPos: BlockPos, pContext: CollisionContext): VoxelShape {
         return SHAPE
@@ -38,21 +32,36 @@ class SolarPanelBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
         return RenderShape.MODEL
     }
 
-    override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity? {
+    override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity {
         return SolarPanelBlockEntity(pPos, pState)
     }
 
-    override fun <T : BlockEntity?> getTicker(
-        pLevel: Level,
+    override fun onRemove(
         pState: BlockState,
-        pBlockEntityType: BlockEntityType<T>
-    ): BlockEntityTicker<T>? {
-        if (pLevel.isClientSide)
-            return null
+        pLevel: Level,
+        pPos: BlockPos,
+        pNewState: BlockState,
+        pMovedByPiston: Boolean
+    ) {
+        if (pState.block !== pNewState.block) {
+            val blockEntity = pLevel.getBlockEntity(pPos)
+            if (blockEntity is SolarPanelBlockEntity) {
+                blockEntity.grid.removePanel(blockEntity)
+                blockEntity.grid.panels.forEach { panel ->
+                    panel.grid = PanelGrid(panel)
+                }
 
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.SOLAR_PANEL_BE.get()) {
-                pLevel1, pPos, _, pBlockEntity -> pBlockEntity.tick(pLevel1, pPos)
+                val neighbors = mutableListOf<BlockEntity?>()
+                neighbors.add(pLevel.getBlockEntity(pPos.north()))
+                neighbors.add(pLevel.getBlockEntity(pPos.south()))
+                neighbors.add(pLevel.getBlockEntity(pPos.east()))
+                neighbors.add(pLevel.getBlockEntity(pPos.west()))
+
+                blockEntity.grid.panels.minus(neighbors.filterIsInstance<SolarPanelBlockEntity>().toSet())
+                    .forEach(SolarPanelBlockEntity::buildGrid)
+            }
         }
+        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston)
     }
 
 //    TODO("Delete use function")
@@ -67,7 +76,7 @@ class SolarPanelBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
         if (!pLevel.isClientSide()) {
             val entity = pLevel.getBlockEntity(pPos)
             if (entity is SolarPanelBlockEntity) {
-                VoltValveMod.LOGGER.info(entity.providePowerSum())
+                VoltValveMod.LOGGER.info(entity.grid.providePowerSum())
             } else {
                 throw IllegalStateException("Our Container provider is missing!")
             }
