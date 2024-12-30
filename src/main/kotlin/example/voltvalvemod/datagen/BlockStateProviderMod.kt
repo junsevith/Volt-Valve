@@ -12,9 +12,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraftforge.client.model.generators.BlockStateProvider
 import net.minecraftforge.client.model.generators.ConfiguredModel
 import net.minecraftforge.client.model.generators.ModelFile
+import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile
 import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
+
 
 class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper):
     BlockStateProvider(output, VoltValveMod.ID, exFileHelper) {
@@ -26,6 +28,7 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
         blockWithItem(ModBlocks.TEST_GENERATOR)
         blockWithItem(ModBlocks.TEST_RECIEVER)
         blockWithItem(ModBlocks.EXAMPLE_ENTITY)
+        simpleBlockWithItem(ModBlocks.ELECTRIC_FURNACE.get(), UncheckedModelFile(modLoc("block/electric_furnace")))
         socketBlock()
         solarPanelBlock()
     }

@@ -3,6 +3,7 @@
     "voltvalvemod:cable",
     "voltvalvemod:test_generator",
     "voltvalvemod:test_reciever",
-    "voltvalvemod:socket"
+    "voltvalvemod:socket",
+    "voltvalvemod:electric_furnace"
   ]
 }

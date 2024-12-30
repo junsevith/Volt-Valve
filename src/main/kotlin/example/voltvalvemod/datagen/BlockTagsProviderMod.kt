@@ -29,5 +29,6 @@ class BlockTagsProviderMod(
             .add(ModBlocks.TEST_GENERATOR.get())
             .add(ModBlocks.TEST_RECIEVER.get())
             .add(ModBlocks.SOCKET.get())
+            .add(ModBlocks.ELECTRIC_FURNACE.get())
     }
 }

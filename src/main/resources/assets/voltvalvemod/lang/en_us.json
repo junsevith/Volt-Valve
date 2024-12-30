@@ -5,6 +5,7 @@
   "block.voltvalvemod.test_generator": "Test Generator",
   "block.voltvalvemod.test_reciever": "Test Reciever",
   "block.voltvalvemod.example_entity": "Example Entity",
+  "block.voltvalvemod.electric_furnace": "Electric Furnace",
   "block.voltvalvemod.solar_panel": "Solar Panel",
   "block.voltvalvemod.socket": "Socket"
 }
