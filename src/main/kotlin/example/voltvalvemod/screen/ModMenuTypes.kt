@@ -15,6 +15,8 @@ object ModMenuTypes {
     val GEM_POLISHING_MENU: RegistryObject<MenuType<ExampleEntityMenu>> =
         registerMenuType("gem_polishing_menu", ::ExampleEntityMenu)
 
+    val ELECTRIC_FURNACE_MENU: RegistryObject<MenuType<ElectricFurnaceEntityMenu>> =
+        registerMenuType("electric_furnace_menu", ::ElectricFurnaceEntityMenu)
 
     private fun <T : AbstractContainerMenu?> registerMenuType(
         name: String,

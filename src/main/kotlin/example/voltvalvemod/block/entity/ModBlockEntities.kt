@@ -2,12 +2,10 @@ package example.voltvalvemod.block.entity
 
 import example.voltvalvemod.VoltValveMod
 import example.voltvalvemod.block.ModBlocks
-import example.voltvalvemod.block.custom.*
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
-import net.minecraft.world.level.block.Blocks
 
 object ModBlockEntities {
     val REGISTRY: DeferredRegister<BlockEntityType<*>> =
@@ -21,10 +19,10 @@ object ModBlockEntities {
         }
 
 
-    val ELECTRIC_FURNACE_BE: RegistryObject<BlockEntityType<ElectricFurnace>> =
+    val ELECTRIC_FURNACE_BE: RegistryObject<BlockEntityType<ElectricFurnaceEntity>> =
         REGISTRY.register("electric_furnace_be") {
             BlockEntityType.Builder.of(
-                ::ElectricFurnace, ModBlocks.ELECTRIC_FURNACE.get()
+                ::ElectricFurnaceEntity, ModBlocks.ELECTRIC_FURNACE.get()
             ).build(null)
         }
 

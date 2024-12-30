@@ -1,6 +1,7 @@
 package example.voltvalvemod.block.entity
 
-import example.voltvalvemod.screen.ExampleEntityMenu
+import example.voltvalvemod.block.custom.ElectricFurnaceBlock
+import example.voltvalvemod.screen.ElectricFurnaceEntityMenu
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.nbt.CompoundTag
@@ -24,7 +25,7 @@ import net.minecraftforge.common.util.LazyOptional
 import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.ItemStackHandler
 
-class ElectricFurnace(pPos: BlockPos, pBlockState: BlockState) :
+class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
     BlockEntity(ModBlockEntities.ELECTRIC_FURNACE_BE.get(), pPos, pBlockState), MenuProvider {
     private val itemHandler = ItemStackHandler(2)
 
@@ -38,16 +39,16 @@ class ElectricFurnace(pPos: BlockPos, pBlockState: BlockState) :
         this.data = object : ContainerData {
             override fun get(pIndex: Int): Int {
                 return when (pIndex) {
-                    0 -> this@ElectricFurnace.progress
-                    1 -> this@ElectricFurnace.maxProgress
+                    0 -> this@ElectricFurnaceEntity.progress
+                    1 -> this@ElectricFurnaceEntity.maxProgress
                     else -> 0
                 }
             }
 
             override fun set(pIndex: Int, pValue: Int) {
                 when (pIndex) {
-                    0 -> this@ElectricFurnace.progress = pValue
-                    1 -> this@ElectricFurnace.maxProgress = pValue
+                    0 -> this@ElectricFurnaceEntity.progress = pValue
+                    1 -> this@ElectricFurnaceEntity.maxProgress = pValue
                 }
             }
 
@@ -88,7 +89,7 @@ class ElectricFurnace(pPos: BlockPos, pBlockState: BlockState) :
     }
 
     override fun createMenu(pContainerId: Int, pPlayerInventory: Inventory, pPlayer: Player): AbstractContainerMenu? {
-        return ExampleEntityMenu(pContainerId, pPlayerInventory, this, this.data)
+        return ElectricFurnaceEntityMenu(pContainerId, pPlayerInventory, this, this.data)
     }
 
     override fun saveAdditional(pTag: CompoundTag) {
@@ -105,7 +106,13 @@ class ElectricFurnace(pPos: BlockPos, pBlockState: BlockState) :
     }
 
     fun tick(pLevel: Level, pPos: BlockPos, pState: BlockState) {
-        if (hasRecipe()) {
+        var signalStrength = 0
+        if (level != null && pLevel.getBlockState(worldPosition).block is ElectricFurnaceBlock) {
+            signalStrength = pLevel.getBlockState(worldPosition).getValue(ElectricFurnaceBlock.SIGNAL)
+            val cookTime = getCookTimeBasedOnSignal(signalStrength)
+            maxProgress = cookTime
+        }
+        if (hasRecipe() && signalStrength > 0 ) {
             increaseCraftingProgress()
             setChanged(pLevel, pPos, pState)
 
@@ -155,6 +162,13 @@ class ElectricFurnace(pPos: BlockPos, pBlockState: BlockState) :
 
     private fun increaseCraftingProgress() {
         progress++
+    }
+
+    fun getCookTimeBasedOnSignal(signal: Int): Int {
+        if(signal > 3){
+            return 250 - (signal * 10)
+        }
+        return 0
     }
 
     companion object {
