@@ -23,12 +23,10 @@ import net.minecraftforge.network.NetworkHooks
 class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
 
     init {
-        // Ustawienie domyślnego stanu bloku podczas konstrukcji
         registerDefaultState(this.stateDefinition.any().setValue(SIGNAL, 0))
     }
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
-        // Dodajemy właściwość SIGNAL do definicji stanu
         builder.add(SIGNAL)
     }
 
@@ -107,11 +105,9 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
         fromPos: BlockPos,
         isMoving: Boolean
     ) {
-        // Odczytujemy siłę sygnału redstone
         var signalStrength = world.getBestNeighborSignal(pos)
         signalStrength = if(signalStrength > 12) 12 else signalStrength
         if (signalStrength != state.getValue(SIGNAL)) {
-            // Aktualizujemy stan bloku, jeśli sygnał się zmienił
             world.setBlock(pos, state.setValue(SIGNAL, signalStrength), 3)
         }
     }
