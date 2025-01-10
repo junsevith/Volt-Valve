@@ -6,6 +6,7 @@ import example.voltvalvemod.datagen.DataGenerators
 import example.voltvalvemod.item.ModCreativeModeTabs
 import example.voltvalvemod.item.ModItems
 import example.voltvalvemod.screen.ExampleEntityScreen
+import example.voltvalvemod.screen.ElectricFurnaceEntityScreen
 import example.voltvalvemod.screen.ModMenuTypes
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.MenuScreens
@@ -70,6 +71,7 @@ object VoltValveMod {
     private fun onClientSetup(event: FMLClientSetupEvent) {
         LOGGER.log(Level.INFO, "Initializing client...")
         MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), ::ExampleEntityScreen)
+        MenuScreens.register(ModMenuTypes.ELECTRIC_FURNACE_MENU.get(), ::ElectricFurnaceEntityScreen)
     }
 
     /**

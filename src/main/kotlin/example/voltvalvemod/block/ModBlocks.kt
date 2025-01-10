@@ -43,7 +43,7 @@ object ModBlocks {
     }
     val ELECTRIC_FURNACE: RegistryObject<Block> = registerBlock("electric_furnace") {
         //to be fixed
-        ExampleEntityBlock(
+        ElectricFurnaceBlock(
             BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()
         )
     }

@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "signal=0": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace0" }},
+    "signal=1": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace1" }},
+    "signal=2": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace2" }},
+    "signal=3": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace3" }},
+    "signal=4": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace4" }},
+    "signal=5": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace5" }},
+    "signal=6": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace6" }},
+    "signal=7": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace7" }},
+    "signal=8": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace8" }},
+    "signal=9": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace9" }},
+    "signal=10": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace10" }},
+    "signal=11": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace11" }},
+    "signal=12": { "model": "voltvalvemod:block/electric_furnace" , "textures": { "all": "voltvalvemod:block/electric_furnace12" }}
+  }
+}

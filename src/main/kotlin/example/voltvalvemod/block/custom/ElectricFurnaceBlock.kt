@@ -1,35 +1,34 @@
 package example.voltvalvemod.block.custom
 
-import example.voltvalvemod.block.entity.ElectricFurnace
-import example.voltvalvemod.block.entity.ExampleEntity
+import example.voltvalvemod.block.entity.ElectricFurnaceEntity
 import example.voltvalvemod.block.entity.ModBlockEntities
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.BaseEntityBlock
+import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.RenderShape
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityTicker
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.block.state.properties.IntegerProperty
 import net.minecraft.world.phys.BlockHitResult
-import net.minecraft.world.phys.shapes.CollisionContext
-import net.minecraft.world.phys.shapes.VoxelShape
 import net.minecraftforge.network.NetworkHooks
 
 class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
-//    override fun getShape(
-//        pState: BlockState,
-//        pLevel: BlockGetter,
-//        pPos: BlockPos,
-//        pContext: CollisionContext
-//    ): VoxelShape {
-//        return SHAPE
-//    }
+
+    init {
+        registerDefaultState(this.stateDefinition.any().setValue(SIGNAL, 0))
+    }
+
+    override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
+        builder.add(SIGNAL)
+    }
 
     override fun getRenderShape(pState: BlockState): RenderShape {
         return RenderShape.MODEL
@@ -45,7 +44,7 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
         if (pState.block !== pNewState.block) {
             val blockEntity = pLevel.getBlockEntity(pPos)
             //to be fixed
-            if (blockEntity is ExampleEntity) {
+            if (blockEntity is ElectricFurnaceEntity) {
                 blockEntity.drops()
             }
         }
@@ -63,8 +62,7 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
     ): InteractionResult {
         if (!pLevel.isClientSide()) {
             val entity = pLevel.getBlockEntity(pPos)
-            //to be fixed
-            if (entity is ExampleEntity) {
+            if (entity is ElectricFurnaceEntity) {
                 NetworkHooks.openScreen((pPlayer as ServerPlayer), entity, pPos)
             } else {
                 throw IllegalStateException("Our Container provider is missing!")
@@ -75,8 +73,7 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
     }
 
     override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity {
-        //to be fixed
-        return ExampleEntity(pPos, pState)
+        return ElectricFurnaceEntity(pPos, pState)
     }
 
     override fun <T : BlockEntity?> getTicker(
@@ -89,7 +86,7 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
         }
 
         return createTickerHelper(
-            pBlockEntityType, ModBlockEntities.GEM_POLISHING_BE.get()
+            pBlockEntityType, ModBlockEntities.ELECTRIC_FURNACE_BE.get()
         ) { pLevel1, pPos, pState1, pBlockEntity ->
             pBlockEntity.tick(
                 pLevel1,
@@ -99,7 +96,23 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
         }
     }
 
-//    companion object {
-//        val SHAPE: VoxelShape = box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)
-//    }
+
+    override fun neighborChanged(
+        state: BlockState,
+        world: Level,
+        pos: BlockPos,
+        block: Block,
+        fromPos: BlockPos,
+        isMoving: Boolean
+    ) {
+        var signalStrength = world.getBestNeighborSignal(pos)
+        signalStrength = if(signalStrength > 12) 12 else signalStrength
+        if (signalStrength != state.getValue(SIGNAL)) {
+            world.setBlock(pos, state.setValue(SIGNAL, signalStrength), 3)
+        }
+    }
+
+    companion object {
+        val SIGNAL: IntegerProperty = IntegerProperty.create("signal", 0, 12)
+    }
 }
