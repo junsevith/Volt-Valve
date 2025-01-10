@@ -45,4 +45,8 @@ class SocketBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
     override fun isOn(): Boolean {
         return true
     }
+
+    override fun disconnect() {
+        this.powerGrid?.removeGenerator(this)
+    }
 }

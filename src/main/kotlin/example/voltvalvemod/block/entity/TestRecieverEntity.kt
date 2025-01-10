@@ -36,4 +36,8 @@ class TestRecieverEntity(pPos: BlockPos, pBlockState: BlockState):
     override fun isOn(): Boolean {
         return true
     }
+
+    override fun disconnect() {
+        this.powerGrid?.removeReciever(this)
+    }
 }

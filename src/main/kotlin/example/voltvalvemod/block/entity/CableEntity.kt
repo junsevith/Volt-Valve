@@ -53,7 +53,7 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
 
     }
 
-    fun disconnect(){
+    override fun disconnect(){
         this.powerGrid!!.removeTransmitter(this)
         VoltValveMod.LOGGER.info("Disconnected from powergrid at $worldPosition")
     }
