@@ -20,11 +20,14 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
 
     override fun onLoad() {
         super.onLoad()
-        rebuildNetwork()
+        if (!level!!.isClientSide) {
+            rebuildNetwork()
+        }
     }
 
     override fun rebuildNetwork() {
         val neighbors = mutableListOf<BlockEntity?>()
+        neighbors.add(this)
         neighbors.add(this.level!!.getBlockEntity(worldPosition.above()))
         neighbors.add(this.level!!.getBlockEntity(worldPosition.below()))
         neighbors.add(this.level!!.getBlockEntity(worldPosition.north()))
@@ -37,25 +40,41 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
 //        val powerGrids = powerNetworkParts.mapNotNull { it.powerGrid }
 
         val (somePowerGrid, noPowerGrid) = powerNetworkParts.partition { it.powerGrid != null }
+        val powerGrids = somePowerGrid.mapNotNull { it.powerGrid }.toSet()
 
-        val powerGrids = somePowerGrid.mapNotNull { it.powerGrid }
         if (powerGrids.isNotEmpty()){
-            this.powerGrid = powerGrids.first()
-            VoltValveMod.LOGGER.info("Connected to powergrid at at $worldPosition")
+            VoltValveMod.LOGGER.info("Rebuild network: Connected to powergrid at at $worldPosition")
+//            this.powerGrid = powerGrids.first()
+            val powerGridsCount = powerGrids.size
+
+            if (powerGridsCount == 1) {
+                this.powerGrid = powerGrids.first()
+            } else {
+                val newPowerGrid = PowerGrid()
+                powerGrids.forEach {
+                    newPowerGrid.mergePowerGrids(it)
+                }
+                this.powerGrid = newPowerGrid
+            }
+
+
         } else {
+            VoltValveMod.LOGGER.info("Rebuild network: New powergrid at $worldPosition")
             this.powerGrid = PowerGrid()
-            VoltValveMod.LOGGER.info("New powergrid at $worldPosition")
         }
 
         noPowerGrid.forEach {
-            it.powerGrid = this.powerGrid
+            if (it !is Transmitter){
+                it.powerGrid = this.powerGrid
+            }
         }
 
     }
 
     override fun disconnect(){
+        VoltValveMod.LOGGER.info("Disconnecting cable from powergrid at $worldPosition")
         this.powerGrid!!.removeTransmitter(this)
-        VoltValveMod.LOGGER.info("Disconnected from powergrid at $worldPosition")
+        VoltValveMod.LOGGER.info("Disconnected cable from powergrid at $worldPosition")
     }
 
     override fun isOn(): Boolean {

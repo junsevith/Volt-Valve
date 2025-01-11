@@ -11,7 +11,7 @@ class PowerGrid {
     var transmitters: MutableSet<Transmitter> = mutableSetOf()
 
     var generatedPower: Long = 0
-    var suppliedPower: Long = 0
+//    var suppliedPower: Long = 0
     var requestedPower: Long = 0
 
     fun updateGenerator(generator: Generator) {
@@ -65,12 +65,12 @@ class PowerGrid {
         }
 
         transmitters.forEach {
-            if (it.powerGrid == null) {
+//            if (it.powerGrid == null) {
                 it.rebuildNetwork()
-            }
+//            }
         }
 
-        updateNetwork()
+//        updateNetwork()
     }
 
     fun updateNetwork() {
@@ -81,7 +81,7 @@ class PowerGrid {
             var done = 0
 
             val sortedRecievers = recievers.toList()
-                .sortedBy { (_key, value) -> value }
+                .sortedBy { (_, value) -> value }
 
             sortedRecievers.forEach { (reciever, requestedPower) ->
                 val sentPower = requestedPower.coerceAtMost(uniform)
@@ -94,7 +94,33 @@ class PowerGrid {
             }
         }
 
-        VoltValveMod.LOGGER.info("Transmitters: ${transmitters.size}, Recievers: ${recievers.size}, Generators: ${generators.size}")
+        VoltValveMod.LOGGER.info("Network Update - "+ getStatus())
 
+    }
+
+    fun mergePowerGrids(powerGrid: PowerGrid) {
+//        generators.putAll(powerGrid.generators)
+//        recievers.putAll(powerGrid.recievers)
+//        transmitters.addAll(powerGrid.transmitters)
+
+        powerGrid.generators.forEach {
+            it.key.powerGrid = this
+        }
+
+        powerGrid.transmitters.forEach {
+            it.powerGrid = this
+        }
+
+        powerGrid.recievers.forEach {
+            it.key.powerGrid = this
+        }
+
+        generatedPower += powerGrid.generatedPower
+        requestedPower += powerGrid.requestedPower
+        updateNetwork()
+    }
+
+    fun getStatus(): String {
+        return "Transmitters: ${transmitters.size}, Recievers: ${recievers.size}, Generators: ${generators.size}, Generated: $generatedPower, Requested: $requestedPower"
     }
 }

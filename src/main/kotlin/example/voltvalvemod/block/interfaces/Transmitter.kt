@@ -1,6 +1,6 @@
 package example.voltvalvemod.block.interfaces
 
-interface Transmitter: PowerNetworkPart {
+interface Transmitter : PowerNetworkPart {
+    // Signal transmitter to rescan its surroundings and rebuild network
     fun rebuildNetwork()
-//    fun updateProperties(generated: Long, requested: Long, network: Int)
 }
