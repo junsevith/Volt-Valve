@@ -1,6 +1,5 @@
 package example.voltvalvemod.block.custom
 
-import example.voltvalvemod.block.entity.SocketBlockEntity
 import example.voltvalvemod.block.entity.SolarPanelBlockEntity
 
 class PanelGrid(panel: SolarPanelBlockEntity) {
