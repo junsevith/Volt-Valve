@@ -78,7 +78,7 @@ class SocketBlock(pProperties: Properties) : DirectionalBlock(pProperties), Enti
                 neighbours.filterIsInstance<SolarPanelBlockEntity>()
                     .map { p -> p.grid }
                     .toSet()
-                    .forEach(PanelGrid::removeSocket)
+                    .forEach { g -> g.removeSocket(blockEntity) }
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving)

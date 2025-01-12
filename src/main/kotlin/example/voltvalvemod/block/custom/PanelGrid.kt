@@ -1,21 +1,22 @@
 package example.voltvalvemod.block.custom
 
+import example.voltvalvemod.block.entity.SocketBlockEntity
 import example.voltvalvemod.block.entity.SolarPanelBlockEntity
 
 class PanelGrid(panel: SolarPanelBlockEntity) {
     val panels: MutableSet<SolarPanelBlockEntity> = mutableSetOf()
-    var socketsNumber = 0
+    val sockets: MutableSet<SocketBlockEntity> = mutableSetOf()
 
     init {
         addPanel(panel)
     }
 
-    fun addSockets(sockets: Int = 1) {
-        socketsNumber += sockets
+    fun addSocket(socket: SocketBlockEntity) {
+        sockets.add(socket)
     }
 
-    fun removeSocket() {
-        socketsNumber--
+    fun removeSocket(socket: SocketBlockEntity) {
+        sockets.remove(socket)
     }
 
     fun addPanel(panel: SolarPanelBlockEntity) {
@@ -27,7 +28,7 @@ class PanelGrid(panel: SolarPanelBlockEntity) {
     }
 
     fun powerPerSocket(): Double {
-        return panels.sumOf(SolarPanelBlockEntity::getPower)/socketsNumber
+        return panels.sumOf(SolarPanelBlockEntity::getPower)/sockets.count()
     }
 
     fun addPanelsTo(grid: PanelGrid) {
@@ -36,9 +37,9 @@ class PanelGrid(panel: SolarPanelBlockEntity) {
                 grid.addPanel(panel)
                 panel.grid = grid
             }
-            grid.addSockets(socketsNumber)
+            sockets.forEach { s -> grid.addSocket(s) }
             panels.clear()
-            socketsNumber = 0
+            sockets.clear()
         }
     }
 }
