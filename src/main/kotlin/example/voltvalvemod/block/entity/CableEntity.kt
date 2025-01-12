@@ -20,7 +20,7 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
 
     override fun onLoad() {
         super.onLoad()
-        if (!level!!.isClientSide) {
+        if (level != null && !level!!.isClientSide) {
             rebuildNetwork()
         }
     }
