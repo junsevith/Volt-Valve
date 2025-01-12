@@ -23,7 +23,11 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty
 import net.minecraft.world.phys.BlockHitResult
 import net.minecraftforge.network.NetworkHooks
 
-class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
+class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pProperties.lightLevel { state->
+    val signal = state.getValue(SIGNAL) // Pobierz wartość sygnału z BlockState
+    signal.toInt() // Przekształć sygnał w poziom światła (0-15)
+
+}) {
 
     init {
         registerDefaultState(this.stateDefinition.any().setValue(SIGNAL, 0))
