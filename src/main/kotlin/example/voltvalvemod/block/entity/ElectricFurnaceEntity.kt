@@ -1,7 +1,10 @@
 package example.voltvalvemod.block.entity
 
+import example.voltvalvemod.VoltValveMod
 import example.voltvalvemod.block.custom.ElectricFurnaceBlock
+import example.voltvalvemod.block.custom.PowerGrid
 import example.voltvalvemod.block.interfaces.Reciever
+import example.voltvalvemod.block.interfaces.Transmitter
 import example.voltvalvemod.screen.ElectricFurnaceEntityMenu
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
@@ -20,6 +23,7 @@ import net.minecraft.world.item.Items
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.common.capabilities.ForgeCapabilities
 import net.minecraftforge.common.util.LazyOptional
@@ -27,7 +31,7 @@ import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.ItemStackHandler
 
 class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
-    BlockEntity(ModBlockEntities.ELECTRIC_FURNACE_BE.get(), pPos, pBlockState), MenuProvider {
+    BlockEntity(ModBlockEntities.ELECTRIC_FURNACE_BE.get(), pPos, pBlockState), Reciever, MenuProvider {
     private val itemHandler = ItemStackHandler(2)
     private var lazyItemHandler: LazyOptional<IItemHandler> = LazyOptional.empty()
 
@@ -35,6 +39,33 @@ class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
     private var progress = 0
     private var maxProgress = 78
 
+    private var currentPower = 0
+
+    override var powerGrid: PowerGrid? = null
+        get() {
+            return field
+        }
+        set(value) {
+            field?.removeReciever(this)
+            field = value
+            field?.updateReciever(this)
+        }
+
+    override fun getPowerRequest(): Long {
+        return 120
+    }
+
+    override fun providePower(amount: Long) {
+        this.currentPower = amount.toInt()
+    }
+
+    override fun isOn(): Boolean {
+        return true
+    }
+
+    override fun disconnect() {
+        this.powerGrid?.removeReciever(this)
+    }
 
 
 
@@ -111,6 +142,7 @@ class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
     fun tick(pLevel: Level, pPos: BlockPos, pState: BlockState) {
         var signalStrength = 0
         if (level != null && pLevel.getBlockState(worldPosition).block is ElectricFurnaceBlock) {
+            (pLevel.getBlockState(worldPosition).block as ElectricFurnaceBlock).powerUpdate(pLevel, pPos, pState, currentPower)
             signalStrength = pLevel.getBlockState(worldPosition).getValue(ElectricFurnaceBlock.SIGNAL)
             val cookTime = getCookTimeBasedOnSignal(signalStrength)
             maxProgress = cookTime
