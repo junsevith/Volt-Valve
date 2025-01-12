@@ -33,7 +33,9 @@ class SocketBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
 
     override var powerGrid: PowerGrid? = null
         set(value) {
-//            field?.removeGenerator(this)
+//            if (field != value) {
+//                field?.removeGenerator(this)
+//            }
             field = value
             field?.updateGenerator(this)
         }

@@ -60,9 +60,16 @@ class PowerGrid {
             it.powerGrid = null
         }
 
+        this.generatedPower = 0
+
+        updateNetwork(false)
+
         recievers.forEach {
             it.key.powerGrid = null
         }
+
+
+
 
         transmitters.forEach {
 //            if (it.powerGrid == null) {
@@ -99,9 +106,6 @@ class PowerGrid {
     }
 
     fun mergePowerGrids(powerGrid: PowerGrid, silent: Boolean = false) {
-//        generators.putAll(powerGrid.generators)
-//        recievers.putAll(powerGrid.recievers)
-//        transmitters.addAll(powerGrid.transmitters)
 
         powerGrid.generators.forEach {
             it.key.powerGrid = this
@@ -115,8 +119,6 @@ class PowerGrid {
             it.key.powerGrid = this
         }
 
-        generatedPower += powerGrid.generatedPower
-        requestedPower += powerGrid.requestedPower
         updateNetwork(silent)
     }
 
