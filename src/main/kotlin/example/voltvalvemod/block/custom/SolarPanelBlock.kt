@@ -61,7 +61,7 @@ class SolarPanelBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
                     n.add(pLevel.getBlockEntity(p.blockPos.east()))
                     n.add(pLevel.getBlockEntity(p.blockPos.below()))
 
-                    p.grid.addSockets(n.filterIsInstance<SocketBlockEntity>().count())
+                    n.filterIsInstance<SocketBlockEntity>().forEach { s -> p.grid.addSocket(s) }
                 }
 
                 blockEntity.grid.panels.minus(neighbors.filterIsInstance<SolarPanelBlockEntity>().toSet())
@@ -84,7 +84,7 @@ class SolarPanelBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
             val entity = pLevel.getBlockEntity(pPos)
             if (entity is SolarPanelBlockEntity) {
                 VoltValveMod.LOGGER.info(entity.grid.powerPerSocket())
-                VoltValveMod.LOGGER.info(entity.grid.socketsNumber)
+                VoltValveMod.LOGGER.info(entity.grid.sockets.count())
             } else {
                 throw IllegalStateException("Our Container provider is missing!")
             }
