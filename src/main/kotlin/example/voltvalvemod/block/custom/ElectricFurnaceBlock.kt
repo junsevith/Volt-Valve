@@ -121,7 +121,7 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
         }
     }*/
     fun powerUpdate(level: Level, pos: BlockPos, state: BlockState,power: Int){
-        var signalStrength = if(power < 40) 0 else power/10
+        var signalStrength = power/10
         if (signalStrength != state.getValue(SIGNAL)) {
             level.setBlock(pos, state.setValue(SIGNAL, signalStrength), 3)
         }
