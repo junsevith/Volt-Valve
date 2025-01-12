@@ -19,7 +19,7 @@ class TestGeneratorEntity(pPos: BlockPos, pBlockState: BlockState):
             return field
         }
         set(value) {
-            field?.removeGenerator(this)
+//            field?.removeGenerator(this)
             field = value
             field?.updateGenerator(this)
         }

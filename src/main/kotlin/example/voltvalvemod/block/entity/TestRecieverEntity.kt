@@ -15,7 +15,7 @@ class TestRecieverEntity(pPos: BlockPos, pBlockState: BlockState):
             return field
         }
         set(value) {
-            field?.removeReciever(this)
+//            field?.removeReciever(this)
             field = value
             field?.updateReciever(this)
         }

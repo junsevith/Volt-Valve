@@ -33,11 +33,11 @@ class Cable :
         var blockEntity: BlockEntity? = null
         if (pState.block !== pNewState.block) {
             blockEntity = pLevel.getBlockEntity(pPos)
-
         }
+
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving)
 
-        if (blockEntity is CableEntity) {
+        if ( !pLevel.isClientSide() && blockEntity is CableEntity) {
             blockEntity.disconnect()
         }
     }
@@ -77,11 +77,13 @@ class Cable :
         pMovedByPiston: Boolean
     ) {
         super.neighborChanged(pState, pLevel, pPos, pNeighborBlock, pNeighborPos, pMovedByPiston)
-        val blockEntity = pLevel.getBlockEntity(pPos)
-        val neighborBlockEntity = pLevel.getBlockEntity(pNeighborPos)
-        if (blockEntity is CableEntity && (neighborBlockEntity is Generator || neighborBlockEntity is Reciever)) {
-            VoltValveMod.LOGGER.info("2Neighbor changed at $pPos")
-            blockEntity.rebuildNetwork()
+        if (!pLevel.isClientSide()) {
+            val blockEntity = pLevel.getBlockEntity(pPos)
+            val neighborBlockEntity = pLevel.getBlockEntity(pNeighborPos)
+            if (blockEntity is CableEntity && (neighborBlockEntity is Generator || neighborBlockEntity is Reciever)) {
+                VoltValveMod.LOGGER.info("2Neighbor changed at $pPos")
+                blockEntity.rebuildNetwork()
+            }
         }
     }
 
