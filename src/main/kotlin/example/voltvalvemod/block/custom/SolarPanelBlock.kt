@@ -1,6 +1,7 @@
 package example.voltvalvemod.block.custom
 
 import example.voltvalvemod.VoltValveMod
+import example.voltvalvemod.block.entity.SocketBlockEntity
 import example.voltvalvemod.block.entity.SolarPanelBlockEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.world.InteractionHand
@@ -52,6 +53,17 @@ class SolarPanelBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
                 neighbors.add(pLevel.getBlockEntity(pPos.east()))
                 neighbors.add(pLevel.getBlockEntity(pPos.west()))
 
+                blockEntity.grid.panels.forEach { p ->
+                    val n = mutableListOf<BlockEntity?>()
+                    n.add(pLevel.getBlockEntity(p.blockPos.north()))
+                    n.add(pLevel.getBlockEntity(p.blockPos.south()))
+                    n.add(pLevel.getBlockEntity(p.blockPos.west()))
+                    n.add(pLevel.getBlockEntity(p.blockPos.east()))
+                    n.add(pLevel.getBlockEntity(p.blockPos.below()))
+
+                    p.grid.addSockets(n.filterIsInstance<SocketBlockEntity>().count())
+                }
+
                 blockEntity.grid.panels.minus(neighbors.filterIsInstance<SolarPanelBlockEntity>().toSet())
                     .forEach(SolarPanelBlockEntity::buildGrid)
             }
@@ -71,7 +83,8 @@ class SolarPanelBlock(pProperties: Properties) : BaseEntityBlock(pProperties) {
         if (!pLevel.isClientSide()) {
             val entity = pLevel.getBlockEntity(pPos)
             if (entity is SolarPanelBlockEntity) {
-                VoltValveMod.LOGGER.info(entity.grid.providePowerSum())
+                VoltValveMod.LOGGER.info(entity.grid.powerPerSocket())
+                VoltValveMod.LOGGER.info(entity.grid.socketsNumber)
             } else {
                 throw IllegalStateException("Our Container provider is missing!")
             }

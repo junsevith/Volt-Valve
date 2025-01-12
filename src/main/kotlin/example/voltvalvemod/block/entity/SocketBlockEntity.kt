@@ -3,8 +3,8 @@ package example.voltvalvemod.block.entity
 import example.voltvalvemod.block.custom.PanelGrid
 import example.voltvalvemod.block.custom.PowerGrid
 import example.voltvalvemod.block.interfaces.Generator
-import example.voltvalvemod.block.interfaces.Transmitter
 import net.minecraft.core.BlockPos
+import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
@@ -12,16 +12,30 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties
 class SocketBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
     BlockEntity(ModBlockEntities.SOCKET_BE.get(), pPos, pBlockState), Generator {
 
-    private val dir = this.blockState.getValue(BlockStateProperties.FACING)
+    val dir = this.blockState.getValue(BlockStateProperties.FACING)
+
+    override fun onLoad() {
+        super.onLoad()
+
+        val neighbours = mutableListOf<BlockEntity?>()
+        neighbours.add(this.level!!.getBlockEntity(this.blockPos.north()))
+        neighbours.add(this.level!!.getBlockEntity(this.blockPos.south()))
+        neighbours.add(this.level!!.getBlockEntity(this.blockPos.west()))
+        neighbours.add(this.level!!.getBlockEntity(this.blockPos.east()))
+        neighbours.add(this.level!!.getBlockEntity(this.blockPos.above()))
+        neighbours.remove(this.level!!.getBlockEntity(this.blockPos.relative(dir)))
+
+        neighbours.filterIsInstance<SolarPanelBlockEntity>()
+            .map { p -> p.grid }
+            .toSet()
+            .forEach(PanelGrid::addSockets)
+    }
 
     override var powerGrid: PowerGrid? = null
         set(value) {
-            val entity = this.level!!.getBlockEntity(this.blockPos.relative(dir))
-            if (entity is Transmitter && entity.powerGrid == value) {
-                field?.removeGenerator(this)
-                field = value
-                field?.updateGenerator(this)
-            }
+            field?.removeGenerator(this)
+            field = value
+            field?.updateGenerator(this)
         }
 
     override fun providePower(): Long {
@@ -37,9 +51,15 @@ class SocketBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
             .map { panel -> panel.grid }
             .toSet()
 
-        val sum = grids.sumOf(PanelGrid::providePowerSum)
+        val sum = grids.sumOf(PanelGrid::powerPerSocket)
 
         return sum.toLong()
+    }
+
+    fun tick(pLevel: Level) {
+        if (pLevel.gameTime % 10L == 0L) {
+            powerGrid?.updateGenerator(this, true)
+        }
     }
 
     override fun isOn(): Boolean {

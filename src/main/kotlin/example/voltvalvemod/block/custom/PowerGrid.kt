@@ -14,39 +14,39 @@ class PowerGrid {
 //    var suppliedPower: Long = 0
     var requestedPower: Long = 0
 
-    fun updateGenerator(generator: Generator) {
+    fun updateGenerator(generator: Generator, silent: Boolean = false) {
         val providedPower = generator.providePower()
         val oldPower = generators[generator] ?: 0
         generators[generator] = providedPower
         generatedPower += providedPower - oldPower
-        updateNetwork()
+        updateNetwork(silent)
     }
 
-    fun removeGenerator(generator: Generator) {
+    fun removeGenerator(generator: Generator, silent: Boolean = false) {
         val oldPower = generators[generator] ?: 0
         generators.remove(generator)
         generatedPower -= oldPower
-        updateNetwork()
+        updateNetwork(silent)
     }
 
-    fun updateReciever(reciever: Reciever) {
+    fun updateReciever(reciever: Reciever, silent: Boolean = false) {
         val requestedPower = reciever.getPowerRequest()
         val oldPower = recievers[reciever] ?: 0
         recievers[reciever] = requestedPower
         this.requestedPower += requestedPower - oldPower
-        updateNetwork()
+        updateNetwork(silent)
     }
 
-    fun removeReciever(reciever: Reciever) {
+    fun removeReciever(reciever: Reciever, silent: Boolean = false) {
         val oldPower = recievers[reciever] ?: 0
         recievers.remove(reciever)
         requestedPower -= oldPower
-        updateNetwork()
+        updateNetwork(silent)
     }
 
-    fun addTransmitter(transmitter: Transmitter) {
+    fun addTransmitter(transmitter: Transmitter, silent: Boolean = false) {
         transmitters.add(transmitter)
-        updateNetwork()
+        updateNetwork(silent)
     }
 
     fun removeTransmitter(transmitter: Transmitter) {
@@ -73,7 +73,7 @@ class PowerGrid {
 //        updateNetwork()
     }
 
-    fun updateNetwork() {
+    fun updateNetwork(silent: Boolean) {
 
         if (recievers.isNotEmpty()) {
             var uniform = generatedPower / recievers.size
@@ -94,11 +94,11 @@ class PowerGrid {
             }
         }
 
-        VoltValveMod.LOGGER.info("Network Update - "+ getStatus())
-
+        if (!silent)
+            VoltValveMod.LOGGER.info("Network Update - "+ getStatus())
     }
 
-    fun mergePowerGrids(powerGrid: PowerGrid) {
+    fun mergePowerGrids(powerGrid: PowerGrid, silent: Boolean = false) {
 //        generators.putAll(powerGrid.generators)
 //        recievers.putAll(powerGrid.recievers)
 //        transmitters.addAll(powerGrid.transmitters)
@@ -117,7 +117,7 @@ class PowerGrid {
 
         generatedPower += powerGrid.generatedPower
         requestedPower += powerGrid.requestedPower
-        updateNetwork()
+        updateNetwork(silent)
     }
 
     fun getStatus(): String {
