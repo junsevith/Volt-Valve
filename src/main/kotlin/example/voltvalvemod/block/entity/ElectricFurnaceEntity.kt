@@ -1,6 +1,7 @@
 package example.voltvalvemod.block.entity
 
 import example.voltvalvemod.block.custom.ElectricFurnaceBlock
+import example.voltvalvemod.block.interfaces.Reciever
 import example.voltvalvemod.screen.ElectricFurnaceEntityMenu
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
@@ -114,7 +115,7 @@ class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
             val cookTime = getCookTimeBasedOnSignal(signalStrength)
             maxProgress = cookTime
         }
-        if (hasRecipe() && signalStrength > 3 ) {
+        if (hasRecipe() && signalStrength > 0 ) {
             increaseCraftingProgress()
             setChanged(pLevel, pPos, pState)
 
@@ -317,4 +318,6 @@ class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
 
             )
     }
+
+
 }

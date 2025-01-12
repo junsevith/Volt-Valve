@@ -1,7 +1,422 @@
 {
-  "variants": {
-    "": {
-      "model": "voltvalvemod:block/electric_furnace"
+  "multipart": [
+    {
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north0"
+      },
+      "when": {
+        "signal": 0,
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north1"
+      },
+      "when": {
+        "signal": 1,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north2"
+      },
+      "when": {
+        "signal": 2,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north3"
+      },
+      "when": {
+        "signal": 3,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north4"
+      },
+      "when": {
+        "signal": 4,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north5"
+      },
+      "when": {
+        "signal": 5,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north6"
+      },
+      "when": {
+        "signal": 6,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north7"
+      },
+      "when": {
+        "signal": 7,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north8"
+      },
+      "when": {
+        "signal": 8,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north9"
+      },
+      "when": {
+        "signal": 9,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north10"
+      },
+      "when": {
+        "signal": 10,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north11"
+      },
+      "when": {
+        "signal": 11,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_north12"
+      },
+      "when": {
+        "signal": 12,
+        "facing": "north"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west0"
+      },
+      "when": {
+        "signal": 0,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west1"
+      },
+      "when": {
+        "signal": 1,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west2"
+      },
+      "when": {
+        "signal": 2,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west3"
+      },
+      "when": {
+        "signal": 3,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west4"
+      },
+      "when": {
+        "signal": 4,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west5"
+      },
+      "when": {
+        "signal": 5,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west6"
+      },
+      "when": {
+        "signal": 6,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west7"
+      },
+      "when": {
+        "signal": 7,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west8"
+      },
+      "when": {
+        "signal": 8,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west9"
+      },
+      "when": {
+        "signal": 9,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west10"
+      },
+      "when": {
+        "signal": 10,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west11"
+      },
+      "when": {
+        "signal": 11,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_west12"
+      },
+      "when": {
+        "signal": 12,
+        "facing": "west"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east0"
+      },
+      "when": {
+        "signal": 0,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east1"
+      },
+      "when": {
+        "signal": 1,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east2"
+      },
+      "when": {
+        "signal": 2,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east3"
+      },
+      "when": {
+        "signal": 3,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east4"
+      },
+      "when": {
+        "signal": 4,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east5"
+      },
+      "when": {
+        "signal": 5,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east6"
+      },
+      "when": {
+        "signal": 6,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east7"
+      },
+      "when": {
+        "signal": 7,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east8"
+      },
+      "when": {
+        "signal": 8,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east9"
+      },
+      "when": {
+        "signal": 9,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east10"
+      },
+      "when": {
+        "signal": 10,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east11"
+      },
+      "when": {
+        "signal": 11,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_east12"
+      },
+      "when": {
+        "signal": 12,
+        "facing": "east"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south0"
+      },
+      "when": {
+        "signal": 0,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south1"
+      },
+      "when": {
+        "signal": 1,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south2"
+      },
+      "when": {
+        "signal": 2,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south3"
+      },
+      "when": {
+        "signal": 3,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south4"
+      },
+      "when": {
+        "signal": 4,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south5"
+      },
+      "when": {
+        "signal": 5,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south6"
+      },
+      "when": {
+        "signal": 6,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south7"
+      },
+      "when": {
+        "signal": 7,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south8"
+      },
+      "when": {
+        "signal": 8,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south9"
+      },
+      "when": {
+        "signal": 9,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south10"
+      },
+      "when": {
+        "signal": 10,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south11"
+      },
+      "when": {
+        "signal": 11,
+        "facing": "south"
+      }
+    },{
+      "apply": {
+        "model": "voltvalvemod:block/electric_furnace_south12"
+      },
+      "when": {
+        "signal": 12,
+        "facing": "south"
+      }
     }
-  }
+  ]
 }

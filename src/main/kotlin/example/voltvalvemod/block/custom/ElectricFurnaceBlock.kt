@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
+import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.BaseEntityBlock
 import net.minecraft.world.level.block.Block
@@ -16,6 +17,8 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.block.state.properties.BlockStateProperties
+import net.minecraft.world.level.block.state.properties.DirectionProperty
 import net.minecraft.world.level.block.state.properties.IntegerProperty
 import net.minecraft.world.phys.BlockHitResult
 import net.minecraftforge.network.NetworkHooks
@@ -28,6 +31,11 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
         builder.add(SIGNAL)
+        builder.add(FACING)
+    }
+
+    override fun getStateForPlacement(context: BlockPlaceContext): BlockState {
+        return this.defaultBlockState().setValue(FACING, context.horizontalDirection.opposite)
     }
 
     override fun getRenderShape(pState: BlockState): RenderShape {
@@ -106,7 +114,7 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
         isMoving: Boolean
     ) {
         var signalStrength = world.getBestNeighborSignal(pos)
-        signalStrength = if(signalStrength > 12) 12 else signalStrength
+        signalStrength = if(signalStrength < 4) 0 else signalStrength - 3
         if (signalStrength != state.getValue(SIGNAL)) {
             world.setBlock(pos, state.setValue(SIGNAL, signalStrength), 3)
         }
@@ -114,5 +122,6 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
 
     companion object {
         val SIGNAL: IntegerProperty = IntegerProperty.create("signal", 0, 12)
+        val FACING: DirectionProperty = BlockStateProperties.HORIZONTAL_FACING
     }
 }
