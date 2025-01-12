@@ -44,7 +44,7 @@ object ModBlockEntities {
     val SOCKET_BE: RegistryObject<BlockEntityType<SocketBlockEntity>> =
         REGISTRY.register("socket_be") {
             BlockEntityType.Builder.of(
-                ::SocketBlockEntity, ModBlocks.SOLAR_PANEL.get()
+                ::SocketBlockEntity, ModBlocks.SOCKET.get()
             ).build(null)
         }
 
