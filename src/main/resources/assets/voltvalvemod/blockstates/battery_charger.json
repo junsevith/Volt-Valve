@@ -1,0 +1,85 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger_empty"
+      },
+      "when": {
+        "power_volume": 0,
+        "is_empty": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger0"
+      },
+      "when": {
+        "power_volume": 0,
+        "is_empty": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger1"
+      },
+      "when": {
+        "power_volume": 1
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger2"
+      },
+      "when": {
+        "power_volume": 2
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger3"
+      },
+      "when": {
+        "power_volume": 3
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger4"
+      },
+      "when": {
+        "power_volume": 4
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger5"
+      },
+      "when": {
+        "power_volume": 5
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger6"
+      },
+      "when": {
+        "power_volume": 6
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger7"
+      },
+      "when": {
+        "power_volume": 7
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_charger8"
+      },
+      "when": {
+        "power_volume": 8
+      }
+    }
+  ]}

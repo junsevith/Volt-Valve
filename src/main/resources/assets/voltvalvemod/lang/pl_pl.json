@@ -7,5 +7,8 @@
   "block.voltvalvemod.example_entity": "Przykładowe Entity",
   "block.voltvalvemod.electric_furnace": "Piec Elektryczny",
   "block.voltvalvemod.solar_panel": "Panel Słoneczny",
-  "block.voltvalvemod.socket": "Gniazdo Elektryczne"
+  "block.voltvalvemod.socket": "Gniazdo Elektryczne",
+  "block.voltvalvemod.battery_charger": "Ładowarka baterii",
+  "block.voltvalvemod.battery_generator": "Generator prądu na baterie",
+  "item.voltvalvemod.battery": "Bateria"
 }

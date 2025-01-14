@@ -109,21 +109,6 @@ class ElectricFurnaceBlock(pProperties: Properties) : BaseEntityBlock(pPropertie
         }
     }
 
-
-    /*override fun neighborChanged(
-        state: BlockState,
-        world: Level,
-        pos: BlockPos,
-        block: Block,
-        fromPos: BlockPos,
-        isMoving: Boolean
-    ) {
-        var signalStrength = world.getBestNeighborSignal(pos)
-        signalStrength = if(signalStrength < 4) 0 else signalStrength - 3
-        if (signalStrength != state.getValue(SIGNAL)) {
-            world.setBlock(pos, state.setValue(SIGNAL, signalStrength), 3)
-        }
-    }*/
     fun powerUpdate(level: Level, pos: BlockPos, state: BlockState,power: Int){
         var signalStrength = power/10
         if (signalStrength != state.getValue(SIGNAL)) {

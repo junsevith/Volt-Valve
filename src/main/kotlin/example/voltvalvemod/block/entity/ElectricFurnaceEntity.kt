@@ -34,7 +34,7 @@ class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
     BlockEntity(ModBlockEntities.ELECTRIC_FURNACE_BE.get(), pPos, pBlockState), Reciever, MenuProvider {
     private val itemHandler = ItemStackHandler(2)
     private var lazyItemHandler: LazyOptional<IItemHandler> = LazyOptional.empty()
-
+    private var requestedPower: Long = 0
     protected val data: ContainerData
     private var progress = 0
     private var maxProgress = 78
@@ -54,7 +54,7 @@ class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
         }
 
     override fun getPowerRequest(): Long {
-        return 120
+        return requestedPower
     }
 
     override fun providePower(amount: Long) {
@@ -142,6 +142,13 @@ class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
     }
 
     fun tick(pLevel: Level, pPos: BlockPos, pState: BlockState) {
+        if (hasRecipe()){
+            requestedPower = 120
+            powerGrid?.updateReciever(this, silent = true)
+        }else{
+            requestedPower = 0
+            powerGrid?.updateReciever(this, silent = true)
+        }
         var signalStrength = 0
         if (level != null && pLevel.getBlockState(worldPosition).block is ElectricFurnaceBlock) {
             (pLevel.getBlockState(worldPosition).block as ElectricFurnaceBlock).powerUpdate(pLevel, pPos, pState, currentPower)
@@ -152,13 +159,13 @@ class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
         if (hasRecipe() && signalStrength > 0 ) {
             increaseCraftingProgress()
             setChanged(pLevel, pPos, pState)
-
             if (hasProgressFinished()) {
                 craftItem()
                 resetProgress()
             }
         } else {
             resetProgress()
+
         }
     }
 
