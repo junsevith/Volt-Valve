@@ -143,7 +143,7 @@ class ElectricFurnaceEntity(pPos: BlockPos, pBlockState: BlockState) :
 
     fun tick(pLevel: Level, pPos: BlockPos, pState: BlockState) {
         if (hasRecipe()){
-            requestedPower = 60
+            requestedPower = 120
             powerGrid?.updateReciever(this, silent = true)
         }else{
             requestedPower = 0
