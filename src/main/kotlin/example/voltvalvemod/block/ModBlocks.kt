@@ -48,6 +48,20 @@ object ModBlocks {
         )
     }
 
+    val BATTERY_CHARGER: RegistryObject<Block> = registerBlock("battery_charger") {
+        //to be fixed
+        BatteryChargerBlock(
+            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+        )
+    }
+
+    val BATTERY_GENERATOR: RegistryObject<Block> = registerBlock("battery_generator") {
+        //to be fixed
+        BatteryGeneratorBlock(
+            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+        )
+    }
+
 
     private fun <T : Block> registerBlock(name: String, block: Supplier<T>): RegistryObject<T> {
         val toReturn = REGISTRY.register(name, block)

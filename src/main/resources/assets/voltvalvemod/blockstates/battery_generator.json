@@ -1,0 +1,85 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator_empty"
+      },
+      "when": {
+        "power_volume": 0,
+        "is_empty": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator0"
+      },
+      "when": {
+        "power_volume": 0,
+        "is_empty": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator1"
+      },
+      "when": {
+        "power_volume": 1
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator2"
+      },
+      "when": {
+        "power_volume": 2
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator_3"
+      },
+      "when": {
+        "power_volume": 3
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator4"
+      },
+      "when": {
+        "power_volume": 4
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator5"
+      },
+      "when": {
+        "power_volume": 5
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator6"
+      },
+      "when": {
+        "power_volume": 6
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator7"
+      },
+      "when": {
+        "power_volume": 7
+      }
+    },
+    {
+      "apply": {
+        "model": "voltvalvemod:block/battery_generator8"
+      },
+      "when": {
+        "power_volume": 8
+      }
+    }
+  ]}

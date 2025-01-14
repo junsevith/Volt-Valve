@@ -29,6 +29,8 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
         blockWithItem(ModBlocks.TEST_RECIEVER)
         blockWithItem(ModBlocks.EXAMPLE_ENTITY)
         simpleBlockWithItem(ModBlocks.ELECTRIC_FURNACE.get(), UncheckedModelFile(modLoc("block/electric_furnace")))
+        simpleBlockWithItem(ModBlocks.BATTERY_CHARGER.get(), UncheckedModelFile(modLoc("block/battery_charger")))
+        simpleBlockWithItem(ModBlocks.BATTERY_GENERATOR.get(), UncheckedModelFile(modLoc("block/battery_generator")))
         socketBlock()
         solarPanelBlock()
     }

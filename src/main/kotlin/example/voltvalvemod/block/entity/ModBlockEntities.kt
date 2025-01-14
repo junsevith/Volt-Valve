@@ -61,5 +61,19 @@ object ModBlockEntities {
                 ::TestRecieverEntity, ModBlocks.TEST_RECIEVER.get()
             ).build(null)
         }
+
+    val BATTERY_CHARGER_BE: RegistryObject<BlockEntityType<BatteryChargerEntity>> =
+        REGISTRY.register("battery_charger_be") {
+            BlockEntityType.Builder.of(
+                ::BatteryChargerEntity, ModBlocks.BATTERY_CHARGER.get()
+            ).build(null)
+        }
+
+    val BATTERY_GENERATOR_BE: RegistryObject<BlockEntityType<BatteryGeneratorEntity>> =
+        REGISTRY.register("battery_generator_be") {
+            BlockEntityType.Builder.of(
+                ::BatteryGeneratorEntity, ModBlocks.BATTERY_GENERATOR.get()
+            ).build(null)
+        }
 }
 
