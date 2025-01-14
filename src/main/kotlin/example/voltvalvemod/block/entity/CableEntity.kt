@@ -14,7 +14,6 @@ class CableEntity(pPos: BlockPos, pBlockState: BlockState) :
     override var powerGrid: PowerGrid? = null
         set(value) {
             field = value
-
             field?.addTransmitter(this)
         }
 

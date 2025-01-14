@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 
-class TestRecieverEntity(pPos: BlockPos, pBlockState: BlockState):
+class TestRecieverEntity(pPos: BlockPos, pBlockState: BlockState) :
     BlockEntity(ModBlockEntities.TEST_RECIEVER_BE.get(), pPos, pBlockState),
     Reciever {
 
@@ -15,7 +15,9 @@ class TestRecieverEntity(pPos: BlockPos, pBlockState: BlockState):
             return field
         }
         set(value) {
-//            field?.removeReciever(this)
+//            if (field != value) {
+//                field?.removeReciever(this)
+//            }
             field = value
             field?.updateReciever(this)
         }

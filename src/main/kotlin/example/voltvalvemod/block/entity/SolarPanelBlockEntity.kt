@@ -43,7 +43,7 @@ class SolarPanelBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
         }
 
         neighbors.add(this.level!!.getBlockEntity(worldPosition.below()))
-        this.grid.addSockets(neighbors.count{n -> n is SocketBlockEntity})
+        neighbors.filterIsInstance<SocketBlockEntity>().forEach { s -> grid.addSocket(s) }
     }
 
     private fun calculateExposure(pLevel: Level, pPos: BlockPos): Double {

@@ -28,7 +28,7 @@ object ModBlocks {
         SolarPanelBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion())
     }
     val SOCKET = registerBlock("socket") {
-        SocketBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA).noOcclusion())
+        SocketBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA))
     }
 
     val CABLE = registerBlock("cable") { Cable() }
@@ -44,7 +44,7 @@ object ModBlocks {
     val ELECTRIC_FURNACE: RegistryObject<Block> = registerBlock("electric_furnace") {
         //to be fixed
         ElectricFurnaceBlock(
-            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()
+            BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
         )
     }
 

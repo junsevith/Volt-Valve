@@ -28,12 +28,14 @@ class SocketBlockEntity(pPos: BlockPos, pBlockState: BlockState) :
         neighbours.filterIsInstance<SolarPanelBlockEntity>()
             .map { p -> p.grid }
             .toSet()
-            .forEach(PanelGrid::addSockets)
+            .forEach {g -> g.addSocket(this)}
     }
 
     override var powerGrid: PowerGrid? = null
         set(value) {
-//            field?.removeGenerator(this)
+//            if (field != value) {
+//                field?.removeGenerator(this)
+//            }
             field = value
             field?.updateGenerator(this)
         }
