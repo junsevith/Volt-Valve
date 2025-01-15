@@ -18,7 +18,9 @@ class ItemModelProviderMod(output: PackOutput?, existingFileHelper: ExistingFile
     override fun registerModels() {
         //Tutaj dodajemy tekstury do bloków
         simpleItem(ModItems.EXAMPLE_ITEM)
+        simpleItem(ModItems.DRILL)
         simpleBlockItem(ModBlocks.CABLE)
+
 //        fenceInventory("cable", mcLoc("block/copper_block"))
     }
 

@@ -1,18 +1,13 @@
 package example.voltvalvemod.block.entity
 
-import example.voltvalvemod.VoltValveMod
-import example.voltvalvemod.block.custom.BatteryChargerBlock
+
 import example.voltvalvemod.block.custom.BatteryGeneratorBlock
 import example.voltvalvemod.block.custom.PowerGrid
 import example.voltvalvemod.block.interfaces.Generator
-import example.voltvalvemod.block.interfaces.Reciever
-import example.voltvalvemod.item.custom.Battery
-import net.minecraft.client.renderer.texture.Tickable
+import example.voltvalvemod.item.custom.Rechargeable
 import net.minecraft.core.BlockPos
-import net.minecraft.network.chat.Component
 import net.minecraft.world.Containers
 import net.minecraft.world.SimpleContainer
-import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntity
@@ -27,9 +22,6 @@ class BatteryGeneratorEntity(pPos: BlockPos, pBlockState: BlockState) :
 
 
     override var powerGrid: PowerGrid? = null
-        get() {
-            return field
-        }
         set(value) {
 //            if (field != value) {
 //                field?.removeReciever(this)
@@ -54,10 +46,10 @@ class BatteryGeneratorEntity(pPos: BlockPos, pBlockState: BlockState) :
     fun tick(pLevel: Level, pPos: BlockPos, pState: BlockState) {
         (pLevel.getBlockState(worldPosition).block as BatteryGeneratorBlock).updateIsEmpty(isEmpty, pState, pLevel, pPos)
         if(!isEmpty && battery != null) {
-            if(Battery.getCharge(battery!!) > 0){
+            if(Rechargeable.getCharge(battery!!) > 0){
                 providingPower = 60
-                Battery.setCharge(battery!!, -0.6f)
-                val powerVolume = Battery.getCharge(battery!!).toInt() / 625
+                Rechargeable.setCharge(battery!!, -0.6f)
+                val powerVolume = Rechargeable.getCharge(battery!!).toInt() / 625
                 (pLevel.getBlockState(worldPosition).block as BatteryGeneratorBlock).powerVolumeUpdate(powerVolume, pState, pLevel, pPos)
             }else{
                 providingPower = 0

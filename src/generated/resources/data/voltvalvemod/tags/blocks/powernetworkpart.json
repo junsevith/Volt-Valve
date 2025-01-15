@@ -4,6 +4,8 @@
     "voltvalvemod:test_generator",
     "voltvalvemod:test_reciever",
     "voltvalvemod:socket",
-    "voltvalvemod:electric_furnace"
+    "voltvalvemod:electric_furnace",
+    "voltvalvemod:battery_charger",
+    "voltvalvemod:battery_generator"
   ]
 }

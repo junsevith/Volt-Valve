@@ -1,21 +1,15 @@
 package example.voltvalvemod.block.entity
 
-import example.voltvalvemod.VoltValveMod
 import example.voltvalvemod.block.custom.BatteryChargerBlock
-import example.voltvalvemod.block.custom.BatteryGeneratorBlock
 import example.voltvalvemod.block.custom.PowerGrid
 import example.voltvalvemod.block.interfaces.Reciever
-import example.voltvalvemod.item.custom.Battery
-import net.minecraft.client.renderer.texture.Tickable
+import example.voltvalvemod.item.custom.Rechargeable
 import net.minecraft.core.BlockPos
-import net.minecraft.network.chat.Component
 import net.minecraft.world.Containers
 import net.minecraft.world.SimpleContainer
-import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntity
-import net.minecraft.world.level.block.entity.TickingBlockEntity
 import net.minecraft.world.level.block.state.BlockState
 
 class BatteryChargerEntity(pPos: BlockPos, pBlockState: BlockState) :
@@ -28,9 +22,6 @@ class BatteryChargerEntity(pPos: BlockPos, pBlockState: BlockState) :
     private var sendingPowerStrength : Float = 0f
 
     override var powerGrid: PowerGrid? = null
-        get() {
-            return field
-        }
         set(value) {
 //            if (field != value) {
 //                field?.removeReciever(this)
@@ -65,9 +56,9 @@ class BatteryChargerEntity(pPos: BlockPos, pBlockState: BlockState) :
             sendingPowerStrength = 2f * currentPower.toFloat() / 200f
         }
         if(!isEmpty && battery != null && sendingPowerStrength > 0f) {
-            if(Battery.getCharge(battery!!) <= 5000){
-                Battery.setCharge(battery!!, sendingPowerStrength)
-                val powerVolume = Battery.getCharge(battery!!).toInt() / 625
+            if(Rechargeable.getCharge(battery!!) <= 5000){
+                Rechargeable.setCharge(battery!!, sendingPowerStrength)
+                val powerVolume = Rechargeable.getCharge(battery!!).toInt() / 625
                 (pLevel.getBlockState(worldPosition).block as BatteryChargerBlock).powerVolumeUpdate(powerVolume, pState, pLevel, pPos)
             }
         }

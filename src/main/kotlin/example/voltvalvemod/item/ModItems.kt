@@ -2,7 +2,10 @@ package example.voltvalvemod.item
 
 import example.voltvalvemod.VoltValveMod
 import example.voltvalvemod.item.custom.Battery
+import example.voltvalvemod.item.custom.Drill
+import net.minecraft.tags.BlockTags
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.Tiers
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 
@@ -15,5 +18,8 @@ object ModItems {
     }
     val BATTERY = REGISTRY.register("battery") {
         Battery(Item.Properties().stacksTo(1))
+    }
+    val DRILL = REGISTRY.register("drill") {
+        Drill(1F, -3.0F, Tiers.DIAMOND, BlockTags.MINEABLE_WITH_PICKAXE, Item.Properties().stacksTo(1))
     }
 }

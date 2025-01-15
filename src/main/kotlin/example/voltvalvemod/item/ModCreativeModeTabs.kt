@@ -2,7 +2,6 @@ package example.voltvalvemod.item
 
 import example.voltvalvemod.VoltValveMod
 import example.voltvalvemod.block.ModBlocks
-import example.voltvalvemod.item.ModItems
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
@@ -28,6 +27,7 @@ object ModCreativeModeTabs {
                 output.accept(ModBlocks.BATTERY_CHARGER.get())
                 output.accept(ModBlocks.BATTERY_GENERATOR.get())
                 output.accept(ModItems.BATTERY.get())
+                output.accept(ModItems.DRILL.get())
             }
             .build()
     }
