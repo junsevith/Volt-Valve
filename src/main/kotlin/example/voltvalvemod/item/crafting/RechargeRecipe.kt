@@ -11,72 +11,77 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.CraftingBookCategory
 import net.minecraft.world.item.crafting.CustomRecipe
 import net.minecraft.world.item.crafting.RecipeSerializer
+import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.level.Level
 
 class RechargeRecipe(pId: ResourceLocation, pCategory: CraftingBookCategory) : CustomRecipe(pId, pCategory) {
 
     override fun matches(pContainer: CraftingContainer, pLevel: Level): Boolean {
-        val list: MutableList<ItemStack> = Lists.newArrayList()
+        val batteries: MutableList<ItemStack> = Lists.newArrayList()
+        val rechargable: MutableList<ItemStack> = Lists.newArrayList()
 
         for (i in 0..<pContainer.containerSize) {
             val itemstack: ItemStack = pContainer.getItem(i)
             if (!itemstack.isEmpty) {
-                if (itemstack.item !is Rechargeable)
-                    return false
-                list.add(itemstack)
-                if (list.size > 1) {
-                    val itemstack1 = list[0]
-                    if (!(itemstack1.item is Battery).xor(itemstack.item is Battery) || itemstack1.count != 1 || itemstack.count != 1
-                        || Rechargeable.hasBattery(itemstack1) || Rechargeable.hasBattery(itemstack)) {
+                if (itemstack.item !is Rechargeable) {
+                    if (itemstack.item !is Battery) {
                         return false
                     }
+                    else {
+                        batteries.add(itemstack)
+                    }
+                }
+                else {
+                    rechargable.add(itemstack)
                 }
             }
         }
 
-        return list.size == 2
+        return batteries.count() == 1 && rechargable.count() == 1
     }
 
     override fun assemble(pContainer: CraftingContainer, pRegistryAccess: RegistryAccess): ItemStack {
-        val list: MutableList<ItemStack> = Lists.newArrayList()
+        val batteries: MutableList<ItemStack> = Lists.newArrayList()
+        val rechargable: MutableList<ItemStack> = Lists.newArrayList()
 
         for (i in 0..<pContainer.containerSize) {
             val itemstack: ItemStack = pContainer.getItem(i)
             if (!itemstack.isEmpty) {
-                if (itemstack.item !is Rechargeable)
-                    return ItemStack.EMPTY
-                list.add(itemstack)
-                if (list.size > 1) {
-                    val itemstack1 = list[0]
-                    if (!(itemstack1.item is Battery).xor(itemstack.item is Battery) || itemstack1.count != 1 || itemstack.count != 1
-                        || Rechargeable.hasBattery(itemstack1) || Rechargeable.hasBattery(itemstack)) {
+                if (itemstack.item !is Rechargeable) {
+                    if (itemstack.item !is Battery) {
                         return ItemStack.EMPTY
                     }
+                    else {
+                        batteries.add(itemstack)
+                    }
+                }
+                else {
+                    rechargable.add(itemstack)
                 }
             }
         }
 
-        if (list.size == 2) {
-            val itemstack3 = list[0]
-            val itemstack4 = list[1]
-            if ((itemstack3.item is Battery).xor(itemstack4.item is Battery) && itemstack3.count == 1 && itemstack4.count == 1
-                && !Rechargeable.hasBattery(itemstack4) && !Rechargeable.hasBattery(itemstack3)) {
-                val rechargeditem: ItemStack
-                val battery: ItemStack
-                if (itemstack4.item is Battery) {
-                    rechargeditem =  itemstack3.copy()
-                    battery = itemstack4
+        if (batteries.count() == 1 && rechargable.count() == 1) {
+            val rechargeditem = rechargable[0]
+            val battery = batteries[0]
+
+            val batteryCharge = Rechargeable.getCharge(battery)
+
+            val item = rechargeditem.item
+            if (item is Rechargeable) {
+                val newStack: ItemStack
+                if (batteryCharge > 0) {
+                    newStack = item.chargedItemStack(batteryCharge)
+
+                    newStack.damageValue = rechargeditem.damageValue
+                    EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(rechargeditem), newStack)
                 }
                 else {
-                    rechargeditem =  itemstack4.copy()
-                    battery = itemstack3
+                    newStack = rechargeditem.copy()
+                    Rechargeable.putBattery(newStack)
                 }
 
-                val batteryCharge = Rechargeable.getCharge(battery)
-                Rechargeable.setCharge(rechargeditem, batteryCharge)
-                Rechargeable.putBattery(rechargeditem)
-
-                return rechargeditem
+                return newStack
             }
         }
 

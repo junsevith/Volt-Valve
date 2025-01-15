@@ -11,5 +11,6 @@
   "block.voltvalvemod.battery_charger": "Battery Charger",
   "block.voltvalvemod.battery_generator": "Battery Generator",
   "item.voltvalvemod.battery": "Battery",
-  "item.voltvalvemod.drill": "Drill"
+  "item.voltvalvemod.drill": "Drill",
+  "item.voltvalvemod.charged_drill": "Drill"
 }

@@ -5,6 +5,7 @@ import example.voltvalvemod.item.custom.Battery
 import example.voltvalvemod.item.custom.Drill
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.Tiers
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 
@@ -19,6 +20,9 @@ object ModItems {
         Battery(Item.Properties().stacksTo(1))
     }
     val DRILL = REGISTRY.register("drill") {
-        Drill(1F, -3.0F, BlockTags.MINEABLE_WITH_PICKAXE, Item.Properties().stacksTo(1))
+        Drill(0f, 1F, -3.0F, BlockTags.MINEABLE_WITH_PICKAXE, Item.Properties().stacksTo(1))
+    }
+    val CHARGED_DRILL = REGISTRY.register("charged_drill") {
+        Drill(Tiers.DIAMOND.speed, 1F, -3.0F, BlockTags.MINEABLE_WITH_PICKAXE, Item.Properties().stacksTo(1))
     }
 }

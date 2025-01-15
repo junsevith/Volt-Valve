@@ -3,6 +3,8 @@ package example.voltvalvemod.item.custom
 import net.minecraft.world.item.ItemStack
 
 interface Rechargeable {
+    fun chargedItemStack(charge: Float): ItemStack
+
     companion object {
         const val MAX_CHARGE = 5000f
         private const val CHARGE_KEY = "Charge"
