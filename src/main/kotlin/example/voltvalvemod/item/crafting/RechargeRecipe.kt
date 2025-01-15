@@ -26,7 +26,8 @@ class RechargeRecipe(pId: ResourceLocation, pCategory: CraftingBookCategory) : C
                 list.add(itemstack)
                 if (list.size > 1) {
                     val itemstack1 = list[0]
-                    if (itemstack1.item !is Battery && itemstack.item !is Battery || itemstack1.count != 1 || itemstack.count != 1) {
+                    if (!(itemstack1.item is Battery).xor(itemstack.item is Battery) || itemstack1.count != 1 || itemstack.count != 1
+                        || Rechargeable.hasBattery(itemstack1) || Rechargeable.hasBattery(itemstack)) {
                         return false
                     }
                 }
@@ -47,7 +48,8 @@ class RechargeRecipe(pId: ResourceLocation, pCategory: CraftingBookCategory) : C
                 list.add(itemstack)
                 if (list.size > 1) {
                     val itemstack1 = list[0]
-                    if (itemstack1.item !is Battery && itemstack.item !is Battery || itemstack1.count != 1 || itemstack.count != 1) {
+                    if (!(itemstack1.item is Battery).xor(itemstack.item is Battery) || itemstack1.count != 1 || itemstack.count != 1
+                        || Rechargeable.hasBattery(itemstack1) || Rechargeable.hasBattery(itemstack)) {
                         return ItemStack.EMPTY
                     }
                 }
@@ -57,7 +59,8 @@ class RechargeRecipe(pId: ResourceLocation, pCategory: CraftingBookCategory) : C
         if (list.size == 2) {
             val itemstack3 = list[0]
             val itemstack4 = list[1]
-            if (itemstack3.item is Battery || itemstack4.item is Battery && itemstack3.count == 1 && itemstack4.count == 1) {
+            if ((itemstack3.item is Battery).xor(itemstack4.item is Battery) && itemstack3.count == 1 && itemstack4.count == 1
+                && !Rechargeable.hasBattery(itemstack4) && !Rechargeable.hasBattery(itemstack3)) {
                 val rechargeditem: ItemStack
                 val battery: ItemStack
                 if (itemstack4.item is Battery) {
@@ -69,9 +72,9 @@ class RechargeRecipe(pId: ResourceLocation, pCategory: CraftingBookCategory) : C
                     battery = itemstack3
                 }
 
-                val itemCharge = Rechargeable.getCharge(rechargeditem)
                 val batteryCharge = Rechargeable.getCharge(battery)
-                Rechargeable.setCharge(rechargeditem, itemCharge + batteryCharge)
+                Rechargeable.setCharge(rechargeditem, batteryCharge)
+                Rechargeable.putBattery(rechargeditem)
 
                 return rechargeditem
             }
