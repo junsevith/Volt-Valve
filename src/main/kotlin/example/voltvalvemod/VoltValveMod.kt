@@ -5,6 +5,7 @@ import example.voltvalvemod.block.entity.ModBlockEntities
 import example.voltvalvemod.datagen.DataGenerators
 import example.voltvalvemod.item.ModCreativeModeTabs
 import example.voltvalvemod.item.ModItems
+import example.voltvalvemod.item.ModRecipesSerializers
 import example.voltvalvemod.screen.ExampleEntityScreen
 import example.voltvalvemod.screen.ElectricFurnaceEntityScreen
 import example.voltvalvemod.screen.ModMenuTypes
@@ -47,6 +48,7 @@ object VoltValveMod {
         ModBlockEntities.REGISTRY.register(MOD_BUS)
         ModMenuTypes.REGISTRY.register(MOD_BUS)
         ModBlocks.BLOCKS.register(MOD_BUS)
+        ModRecipesSerializers.REGISTRY.register(MOD_BUS)
 
         val obj = runForDist(
             clientTarget = {

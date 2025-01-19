@@ -18,7 +18,12 @@ class ItemModelProviderMod(output: PackOutput?, existingFileHelper: ExistingFile
     override fun registerModels() {
         //Tutaj dodajemy tekstury do bloków
         simpleItem(ModItems.EXAMPLE_ITEM)
+        simpleItem(ModItems.DRILL)
         simpleBlockItem(ModBlocks.CABLE)
+
+        withExistingParent(ModItems.CHARGED_DRILL.id.path, ResourceLocation("item/generated"))
+            .texture("layer0", ResourceLocation(VoltValveMod.ID, "item/drill"))
+
 //        fenceInventory("cable", mcLoc("block/copper_block"))
     }
 

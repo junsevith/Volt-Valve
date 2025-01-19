@@ -10,5 +10,7 @@
   "block.voltvalvemod.socket": "Gniazdo Elektryczne",
   "block.voltvalvemod.battery_charger": "Ładowarka baterii",
   "block.voltvalvemod.battery_generator": "Generator prądu na baterie",
-  "item.voltvalvemod.battery": "Bateria"
+  "item.voltvalvemod.battery": "Bateria",
+  "item.voltvalvemod.drill": "Wiertło Górnicze",
+  "item.voltvalvemod.charged_drill": "Wiertło Górnicze"
 }
