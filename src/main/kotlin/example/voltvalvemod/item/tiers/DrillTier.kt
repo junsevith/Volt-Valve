@@ -9,7 +9,7 @@ class DrillTier(pSpeed: Float): Tier {
     private val speed = pSpeed
 
     override fun getUses(): Int {
-        return Tiers.DIAMOND.uses
+        return Tiers.NETHERITE.uses
     }
 
     override fun getSpeed(): Float {
@@ -29,6 +29,6 @@ class DrillTier(pSpeed: Float): Tier {
     }
 
     override fun getRepairIngredient(): Ingredient {
-        return Ingredient.of(Items.IRON_INGOT)
+        return Ingredient.of(Items.DIAMOND)
     }
 }
