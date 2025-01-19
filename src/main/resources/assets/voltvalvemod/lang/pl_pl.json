@@ -2,8 +2,8 @@
   "block.voltvalvemod.example_block": "Przykładowy Blok",
   "item.voltvalvemod.example_item": "Przykładowy Przedmiot",
   "block.voltvalvemod.cable": "Kabel",
-  "block.voltvalvemod.test_generator": "Testowy Generator",
-  "block.voltvalvemod.test_reciever": "Testowy Odbiornik",
+  "block.voltvalvemod.test_generator": "Reaktor fuzyjny",
+  "block.voltvalvemod.test_reciever": "Lampa",
   "block.voltvalvemod.example_entity": "Przykładowe Entity",
   "block.voltvalvemod.electric_furnace": "Piec Elektryczny",
   "block.voltvalvemod.solar_panel": "Panel Słoneczny",
@@ -12,5 +12,8 @@
   "block.voltvalvemod.battery_generator": "Generator prądu na baterie",
   "item.voltvalvemod.battery": "Bateria",
   "item.voltvalvemod.drill": "Wiertło Górnicze",
-  "item.voltvalvemod.charged_drill": "Wiertło Górnicze"
+  "item.voltvalvemod.charged_drill": "Wiertło Górnicze",
+  "item.voltvalvemod.acid": "Kwas",
+  "item.voltvalvemod.silicon_chip": "Płytka krzemowa",
+  "item.voltvalvemod.circuit": "Układ elektroniczny"
 }

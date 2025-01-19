@@ -11,7 +11,7 @@ class TestGeneratorEntity(pPos: BlockPos, pBlockState: BlockState):
     Generator {
 
     override fun providePower(): Long {
-        return 10
+        return 1024
     }
 
     override var powerGrid: PowerGrid? = null

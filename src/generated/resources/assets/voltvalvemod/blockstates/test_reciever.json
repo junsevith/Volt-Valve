@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "voltvalvemod:block/test_reciever"
+      "model": "voltvalvemod:block/lamp"
     }
   }
 }

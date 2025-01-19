@@ -25,4 +25,16 @@ object ModItems {
     val CHARGED_DRILL = REGISTRY.register("charged_drill") {
         Drill(Tiers.DIAMOND.speed, 1F, -3.0F, BlockTags.MINEABLE_WITH_PICKAXE, Item.Properties().stacksTo(1))
     }
+
+    val ACID = REGISTRY.register("acid") {
+        Item(Item.Properties().stacksTo(16))
+    }
+
+    val SILICON_CHIP = REGISTRY.register("silicon_chip") {
+        Item(Item.Properties().stacksTo(16))
+    }
+
+    val CIRCUIT = REGISTRY.register("circuit") {
+        Item(Item.Properties().stacksTo(16))
+    }
 }

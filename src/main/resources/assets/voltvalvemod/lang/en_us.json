@@ -2,8 +2,8 @@
   "block.voltvalvemod.example_block": "Example Block",
   "item.voltvalvemod.example_item": "Example Item",
   "block.voltvalvemod.cable": "Cable",
-  "block.voltvalvemod.test_generator": "Test Generator",
-  "block.voltvalvemod.test_reciever": "Test Reciever",
+  "block.voltvalvemod.test_generator": "Quantum fusion reactor",
+  "block.voltvalvemod.test_reciever": "Lamp",
   "block.voltvalvemod.example_entity": "Example Entity",
   "block.voltvalvemod.electric_furnace": "Electric Furnace",
   "block.voltvalvemod.solar_panel": "Solar Panel",
@@ -12,5 +12,8 @@
   "block.voltvalvemod.battery_generator": "Battery Generator",
   "item.voltvalvemod.battery": "Battery",
   "item.voltvalvemod.drill": "Drill",
-  "item.voltvalvemod.charged_drill": "Drill"
+  "item.voltvalvemod.charged_drill": "Drill",
+  "item.voltvalvemod.acid": "Acid",
+  "item.voltvalvemod.silicon_chip": "Silicon Chip",
+  "item.voltvalvemod.circuit": "Circuit"
 }

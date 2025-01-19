@@ -10,7 +10,9 @@ import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 
 class TestGenerator :
-    Block(Properties.copy(Blocks.IRON_BLOCK)),
+    Block(Properties.copy(Blocks.IRON_BLOCK).lightLevel { state ->
+        7
+    }),
     EntityBlock {
 
     override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity {

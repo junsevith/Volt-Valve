@@ -28,6 +28,9 @@ object ModCreativeModeTabs {
                 output.accept(ModBlocks.BATTERY_GENERATOR.get())
                 output.accept(ModItems.BATTERY.get())
                 output.accept(ModItems.DRILL.get())
+                output.accept(ModItems.ACID.get())
+                output.accept(ModItems.SILICON_CHIP.get())
+                output.accept(ModItems.CIRCUIT.get())
             }
             .build()
     }

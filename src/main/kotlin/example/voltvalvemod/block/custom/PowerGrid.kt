@@ -60,13 +60,15 @@ class PowerGrid {
             it.powerGrid = null
         }
 
+        recievers.forEach {
+            it.key.powerGrid = null
+        }
+
         this.generatedPower = 0
 
         updateNetwork(false)
 
-        recievers.forEach {
-            it.key.powerGrid = null
-        }
+
 
 
 
@@ -101,8 +103,7 @@ class PowerGrid {
             }
         }
 
-        if (!silent)
-            VoltValveMod.LOGGER.info("Network Update - "+ getStatus())
+//        if (!silent) VoltValveMod.LOGGER.info("Network Update - "+ getStatus())
     }
 
     fun mergePowerGrids(powerGrid: PowerGrid, silent: Boolean = false) {

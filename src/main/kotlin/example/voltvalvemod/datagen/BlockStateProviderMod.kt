@@ -24,8 +24,14 @@ class BlockStateProviderMod(output: PackOutput, exFileHelper: ExistingFileHelper
         //Tu się dodaje state do bloków
         blockWithItem(ModBlocks.EXAMPLE_BLOCK)
         cableBlock()
-        blockWithItem(ModBlocks.TEST_GENERATOR)
-        blockWithItem(ModBlocks.TEST_RECIEVER)
+//        blockWithItem(ModBlocks.TEST_GENERATOR)
+//        blockWithItem(ModBlocks.TEST_RECIEVER)
+        simpleBlockWithItem(ModBlocks.TEST_RECIEVER.get(),
+            ModelFile.UncheckedModelFile(modLoc("block/lamp"))
+        )
+        simpleBlockWithItem(ModBlocks.TEST_GENERATOR.get(),
+            ModelFile.UncheckedModelFile(modLoc("block/reactor"))
+        )
         blockWithItem(ModBlocks.EXAMPLE_ENTITY)
 //        simpleBlockWithItem(ModBlocks.ELECTRIC_FURNACE.get(), UncheckedModelFile(modLoc("block/electric_furnace")))
 //        simpleBlockWithItem(ModBlocks.BATTERY_CHARGER.get(), UncheckedModelFile(modLoc("block/battery_charger")))

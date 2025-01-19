@@ -1,8 +1,16 @@
 package example.voltvalvemod.block.entity
 
+import example.voltvalvemod.VoltValveMod
+import example.voltvalvemod.block.custom.ElectricFurnaceBlock
 import example.voltvalvemod.block.custom.PowerGrid
+import example.voltvalvemod.block.custom.TestReciever
 import example.voltvalvemod.block.interfaces.Reciever
 import net.minecraft.core.BlockPos
+import net.minecraft.network.Connection
+import net.minecraft.network.protocol.Packet
+import net.minecraft.network.protocol.game.ClientGamePacketListener
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket
+import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 
@@ -27,12 +35,19 @@ class TestRecieverEntity(pPos: BlockPos, pBlockState: BlockState) :
     private var efficiencyPercentage: Double = 0.0
 
     override fun getPowerRequest(): Long {
-        return 10
+        return 15
     }
 
     override fun providePower(amount: Long) {
         providedPower = amount
         efficiencyPercentage = (100 * providedPower).toDouble() / getPowerRequest()
+        val state = level?.getBlockState(worldPosition)
+        if (state != null) {
+            level?.setBlock(worldPosition, state.setValue(TestReciever.BRIGHTNESS, providedPower.toInt()), Block.UPDATE_ALL)
+        }
+
+
+
     }
 
     override fun isOn(): Boolean {
@@ -41,5 +56,9 @@ class TestRecieverEntity(pPos: BlockPos, pBlockState: BlockState) :
 
     override fun disconnect() {
         this.powerGrid?.removeReciever(this)
+    }
+
+    fun brightness(): Int {
+        return providedPower.toInt()
     }
 }

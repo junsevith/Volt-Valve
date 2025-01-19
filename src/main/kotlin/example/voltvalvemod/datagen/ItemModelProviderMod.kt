@@ -19,7 +19,13 @@ class ItemModelProviderMod(output: PackOutput?, existingFileHelper: ExistingFile
         //Tutaj dodajemy tekstury do bloków
         simpleItem(ModItems.EXAMPLE_ITEM)
         simpleItem(ModItems.DRILL)
+
+        simpleItem(ModItems.ACID)
+        simpleItem(ModItems.SILICON_CHIP)
+        simpleItem(ModItems.CIRCUIT)
+
         simpleBlockItem(ModBlocks.CABLE)
+
 
         withExistingParent(ModItems.CHARGED_DRILL.id.path, ResourceLocation("item/generated"))
             .texture("layer0", ResourceLocation(VoltValveMod.ID, "item/drill"))

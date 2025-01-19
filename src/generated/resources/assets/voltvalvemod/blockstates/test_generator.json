@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "voltvalvemod:block/test_generator"
+      "model": "voltvalvemod:block/reactor"
     }
   }
 }
